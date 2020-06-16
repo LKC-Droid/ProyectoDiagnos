@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Diagnos.Modelos.DTO
+namespace ProyectoDiagnos.Modelos.DTO
 {
     public class Ficha
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Diagnos
+namespace ProyectoDiagnos.Modelos.DTO
 {
     public class Insumo
     {
