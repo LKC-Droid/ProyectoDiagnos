@@ -1,0 +1,330 @@
+﻿<Window x:Class="Diagnos.Vistas.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Diagnos.Vistas"
+        mc:Ignorable="d"
+        Title="Diagnos" Height="800" Width="1024" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Background="#FF6FB5FB">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" SnapsToDevicePixels="true" StrokeThickness="1" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="BorderRadioCorner" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="FocusVisual1">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" SnapsToDevicePixels="true" StrokeThickness="1" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background1" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border1" Color="#FF2B2B2B"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background1" Color="#FF035DA4"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border1" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background1" Color="#FF1698FF"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border1" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background1" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border1" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground1" Color="#FF838383"/>
+        <Style x:Key="BorderRoundedCorner" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual1}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background1}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border1}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="10"  Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background1}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border1}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background1}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border1}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background1}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border1}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground1}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="FocusVisual2">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" SnapsToDevicePixels="true" StrokeThickness="1" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background2" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border2" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background2" Color="#00BEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border2" Color="#003C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background2" Color="#00C4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border2" Color="#002C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background2" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border2" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground2" Color="#FF838383"/>
+        <Style x:Key="HomeButton" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual2}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background2}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border2}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background2}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border2}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground2}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="FocusVisual3">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" SnapsToDevicePixels="true" StrokeThickness="1" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background3" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border3" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background3" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border3" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background3" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border3" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background3" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border3" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground3" Color="#FF838383"/>
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual3}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background3}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border3}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background3}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border3}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background3}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border3}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background3}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border3}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground3}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Rectangle Height="70" VerticalAlignment="Top" Fill="#FF0078D7"/>
+        <Rectangle HorizontalAlignment="Left" Height="53" Margin="129,7,0,0" VerticalAlignment="Top" Width="3" Fill="White"/>
+        <Rectangle HorizontalAlignment="Left" Height="53" Margin="744,10,0,0" VerticalAlignment="Top" Width="3" Fill="White"/>
+        <Label Content="Bienvenido&#xD;&#xA;" HorizontalAlignment="Left" Margin="834,-6,0,0" VerticalAlignment="Top" Background="Transparent" Foreground="White" Width="128" FontSize="22" Height="40" FontWeight="Bold"/>
+        <Label x:Name="NombreDoctor" Content="%UserName%" HorizontalAlignment="Left" Margin="786,25,0,0" VerticalAlignment="Top" Background="Transparent" Foreground="White" Width="210" FontSize="22" Height="40" FontWeight="Normal" FontStretch="Medium"/>
+        <Image x:Name="Logo" HorizontalAlignment="Left" Height="67" VerticalAlignment="Top" Width="572" Source="/Resources/images/Image1.png" Margin="161,0,0,0"/>
+        <Rectangle HorizontalAlignment="Stretch" Height="27" Margin="0,68,0,0" VerticalAlignment="Top" Width="1024" Fill="White"/>
+        <Canvas x:Name="Agenda" Margin="10,114,10,10" Background="White" AutomationProperties.Name="Agenda" Visibility="Visible">
+            <Canvas x:Name="Citas" Background="White" AutomationProperties.Name="Agenda" Height="660" Width="1004" Visibility="Visible">
+                <Label Content="Agenda" Canvas.Left="408" Canvas.Top="10" Height="84" Width="188" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
+                <Rectangle Height="11" Canvas.Top="94" Width="1004" Fill="#FF0078D7"/>
+                <Button Content="Nueva cita" Canvas.Left="852" Canvas.Top="33" Height="38" Width="113" Click="Button_Click_1"/>
+                <Label x:Name="TimeLabel" Content="00:00" FontSize="66" Foreground="#FF0078D7" FontWeight="Bold" FontStyle="Normal" Padding="1,-12,32,-7" RenderTransformOrigin="0.488,0.481" Height="96" Canvas.Left="36" Canvas.Top="4" Width="279" />
+                <ListBox Height="483" Canvas.Left="36" Canvas.Top="154" Width="929" BorderBrush="#FF0078D7">
+                    <ListBoxItem Height="65" Selected="ListBoxItem_Selected" Width="861" Margin="0,18,0,0" BorderBrush="#FF6FB5FB">
+                        <Grid Height="65" Width="919">
+                            <Rectangle Fill="#FF383838" HorizontalAlignment="Left" Height="65" Stroke="Black" VerticalAlignment="Top" Width="18" Margin="10,0,0,0"/>
+                            <Label Content="%Nombre%" HorizontalAlignment="Left" Margin="96,12,0,0" VerticalAlignment="Top" Foreground="#FF0078D7" FontSize="20" FontWeight="Bold"/>
+                            <Label Content="%Hora%" HorizontalAlignment="Left" Margin="585,10,0,0" VerticalAlignment="Top" Background="#00000000" Foreground="#FF0078D7" FontSize="22" FontWeight="Bold"/>
+                            <CheckBox Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="794,28,0,0" Height="21" Width="19"/>
+                            <Rectangle Fill="#FF0078D7" HorizontalAlignment="Left" Height="65" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="49,0,0,0"/>
+                            <Rectangle Fill="#FF0078D7" HorizontalAlignment="Left" Height="65" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="537,3,0,-3"/>
+                            <Rectangle Fill="#FF0078D7" HorizontalAlignment="Left" Height="65" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="743,0,0,0"/>
+                        </Grid>
+                    </ListBoxItem>
+                </ListBox>
+            </Canvas>
+            <Canvas x:Name="Registro_de_cita" Background="White" AutomationProperties.Name="nuevaCita" Height="660" Canvas.Left="-10" Width="1004" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Hidden">
+                <Label Content="Nueva cita médica" Canvas.Left="275" Canvas.Top="10" Height="84" Width="454" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
+                <Rectangle Height="11" Canvas.Top="94" Width="1004" Fill="#FF0078D7"/>
+            </Canvas>
+        </Canvas>
+        <Canvas x:Name="Pacientes" Margin="10,114,10,10" Background="White" AutomationProperties.Name="Agenda" Visibility="Visible" d:IsHidden="True">
+            <Canvas x:Name="AñadirPaciente" Background="White" AutomationProperties.Name="Agenda" Height="660" Width="1004" Visibility="Visible">
+                <Label Content="Nuevo paciente" Canvas.Left="320" Canvas.Top="10" Height="84" Width="364" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
+                <Rectangle Height="11" Canvas.Top="94" Width="1004" Fill="#FF0078D7"/>
+                <Label Content="Nombre:" Canvas.Left="398" Canvas.Top="194"/>
+                <TextBox Canvas.Left="472" Canvas.Top="196" Text="&#xA;" TextWrapping="Wrap" Width="212" Height="22"/>
+                <Label Content="Apellido Paterno:" Canvas.Left="354" Canvas.Top="229"/>
+                <TextBox Canvas.Left="474" Canvas.Top="231" Text="&#xA;" TextWrapping="Wrap" Width="210" Height="22"/>
+                <Label Content="Apellido Materno:" Canvas.Left="350" Canvas.Top="264"/>
+                <TextBox Canvas.Left="474" Canvas.Top="268" Text="&#xA;" TextWrapping="Wrap" Width="210" Height="22"/>
+                <Label Content="Numero de telefono:" Canvas.Left="336" Canvas.Top="296"/>
+                <TextBox Canvas.Left="474" Canvas.Top="303" Text="&#xA;" TextWrapping="Wrap" Width="210" Height="22"/>
+                <DatePicker Canvas.Left="472" Canvas.Top="379" Width="212"/>
+                <Label Content="Fecha de nacimiento:" Canvas.Left="334" Canvas.Top="372"/>
+                <Label Content="RUT:" Canvas.Left="420" Canvas.Top="159"/>
+                <TextBox Canvas.Left="474" Canvas.Top="161" Text="&#xA;" TextWrapping="Wrap" Width="210" Height="22"/>
+                <TextBox Canvas.Left="472" Canvas.Top="425" Text="&#xA;" TextWrapping="Wrap" Width="212" Height="96"/>
+                <Label Content="Enfermedad Cronica:" Canvas.Left="334" Canvas.Top="425"/>
+                <Label Content="Correo Electronico:" Canvas.Left="344" Canvas.Top="332"/>
+                <TextBox Canvas.Left="474" Canvas.Top="339" Text="&#xA;" TextWrapping="Wrap" Width="210" Height="22"/>
+                <Button Style="{DynamicResource BorderRoundedCorner}" Content="Registrar Paciente" Canvas.Left="434" Canvas.Top="570" Width="144" Height="43" Background="#FF0078D7" BorderBrush="{x:Null}" Foreground="White" FontSize="16"/>
+            </Canvas>
+            <Canvas x:Name="ListaDePacientes" Background="White" AutomationProperties.Name="nuevaCita" Height="660" Width="994" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Visible">
+                <Label Content="Lista de pacientes registrados" Canvas.Left="149" Canvas.Top="10" Height="84" Width="696" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
+                <Rectangle Height="11" Canvas.Top="94" Width="1004" Fill="#FF0078D7"/>
+                <ListView Height="414" Width="886" Canvas.Left="54" Canvas.Top="185">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <TextBox Canvas.Left="54" Canvas.Top="153" TextWrapping="Wrap" Width="308" Height="27" BorderBrush="#FF0078D7"/>
+                <Button Content="" Canvas.Left="367" Canvas.Top="148" Height="32" Width="37" BorderBrush="{x:Null}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Resources/images/loupe.png"/>
+                    </Button.Background>
+                </Button>
+                <Label Content="Buscar Paciente" Canvas.Left="51" Canvas.Top="119" FontWeight="Bold" Foreground="#FF0078D7" FontSize="20"/>
+                <Button Content="Editar" Canvas.Left="791" Canvas.Top="153" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="18" RenderTransformOrigin="0.062,0.514" Width="62"/>
+                <Button Content="Eliminar" Canvas.Left="867" Canvas.Top="153" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="18"/>
+            </Canvas>
+        </Canvas>
+        <Expander x:Name="menu1" Header="Pacientes" FontSize="16" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="263,71,508,497" AutomationProperties.Name="menu" d:IsLocked="True">
+            <Grid Background="#FF0078D7" Height="101" VerticalAlignment="Top">
+                <Button Content="Agregar nuevo paciente" Click="Button_Click_3" FontWeight="Bold" BorderBrush="#FF6FB5FB" Background="White" VerticalAlignment="Top" Height="35" Margin="0,10,0,0" Foreground="#FF0078D7"/>
+                <Button Content="Ver Pacientes" VerticalAlignment="Top" Height="35" Background="White" BorderBrush="#FF6FB5FB" Foreground="#FF0078D7" FontWeight="Bold" Click="Button_Click_4" Margin="0,51,0,0"/>
+            </Grid>
+        </Expander>
+        <Expander x:Name="menu2" Header="Administración" FontSize="16" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="516,71,255,497" AutomationProperties.Name="menu" d:IsHidden="True" d:IsLocked="True">
+            <Grid Background="#FF0078D7"/>
+        </Expander>
+        <Expander x:Name="menu3" Header="Reportes" FontSize="16" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="771,71,0,497" d:IsHidden="True" d:IsLocked="True">
+            <Grid Background="#FF0078D7"/>
+        </Expander>
+        <Button Style="{DynamicResource HomeButton}" HorizontalAlignment="Left" Margin="25,2,0,0" VerticalAlignment="Top" Height="63" Width="66" Click="Button_Click_5" BorderBrush="{x:Null}" d:IsLocked="True">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/images/Home.png"/>
+            </Button.Background>
+        </Button>
+        <Expander x:Name="menu" Header="Agenda" FontSize="16" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="10,71,761,496" AutomationProperties.Name="menu" d:IsLocked="True">
+            <Grid Background="#FF0078D7" Height="101" VerticalAlignment="Top">
+                <Button Style="{DynamicResource ButtonStyle1}" Content="Ver citas de hoy" Click="Button_Click_1" FontWeight="Bold" BorderBrush="#FF6FB5FB" Background="White" VerticalAlignment="Top" Height="35" Margin="0,10,0,0" Foreground="#FF0078D7"/>
+                <Button Content="Ver todas las citas" VerticalAlignment="Top" Height="35" Background="White" BorderBrush="#FF6FB5FB" Foreground="#FF0078D7" FontWeight="Bold" Click="Button_Click_1" Margin="0,51,0,0"/>
+            </Grid>
+        </Expander>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="1108,483,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
