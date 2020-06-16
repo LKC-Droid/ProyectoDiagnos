@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using MySql.Data.MySqlClient;
-
+using ProyectoDiagnos.Utils;
 
 namespace Diagnos.Vistas
 {
@@ -37,10 +37,13 @@ namespace Diagnos.Vistas
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             
+           
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+
             //Abrir la agenda de las citas ya registradas
             Pacientes.Visibility = Visibility.Hidden;
             Agenda.Visibility = Visibility.Visible;
@@ -106,6 +109,18 @@ namespace Diagnos.Vistas
         private void ListBoxItem_Selected(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            Conectar cs = new Conectar();
+
+            MySqlDataReader rd = cs.ConectarDB("Show tables");
+
+            while (rd.Read())
+            {
+                MessageBox.Show(rd.GetString(0));
+            }
         }
     }
 }

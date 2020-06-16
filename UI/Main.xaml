@@ -238,7 +238,7 @@
             <Canvas x:Name="Citas" Background="White" AutomationProperties.Name="Agenda" Height="660" Width="1004" Visibility="Visible">
                 <Label Content="Agenda" Canvas.Left="408" Canvas.Top="10" Height="84" Width="188" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
                 <Rectangle Height="11" Canvas.Top="94" Width="1004" Fill="#FF0078D7"/>
-                <Button Content="Nueva cita" Canvas.Left="852" Canvas.Top="33" Height="38" Width="113" Click="Button_Click_1"/>
+                <Button Content="Nueva cita" Canvas.Left="852" Canvas.Top="33" Height="38" Width="113" Click="Button_Click"/>
                 <Label x:Name="TimeLabel" Content="00:00" FontSize="66" Foreground="#FF0078D7" FontWeight="Bold" FontStyle="Normal" Padding="1,-12,32,-7" RenderTransformOrigin="0.488,0.481" Height="96" Canvas.Left="36" Canvas.Top="4" Width="279" />
                 <ListBox Height="483" Canvas.Left="36" Canvas.Top="154" Width="929" BorderBrush="#FF0078D7">
                     <ListBoxItem Height="65" Selected="ListBoxItem_Selected" Width="861" Margin="0,18,0,0" BorderBrush="#FF6FB5FB">
@@ -302,17 +302,19 @@
                 <Button Content="Eliminar" Canvas.Left="867" Canvas.Top="153" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="18"/>
             </Canvas>
         </Canvas>
-        <Expander x:Name="menu1" Header="Pacientes" FontSize="16" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="263,71,508,497" AutomationProperties.Name="menu" d:IsLocked="True">
+        <Expander x:Name="menu1" Header="Pacientes" FontSize="16" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="263,71,508,497" AutomationProperties.Name="menu" d:IsLocked="True" d:IsHidden="True">
             <Grid Background="#FF0078D7" Height="101" VerticalAlignment="Top">
                 <Button Content="Agregar nuevo paciente" Click="Button_Click_3" FontWeight="Bold" BorderBrush="#FF6FB5FB" Background="White" VerticalAlignment="Top" Height="35" Margin="0,10,0,0" Foreground="#FF0078D7"/>
                 <Button Content="Ver Pacientes" VerticalAlignment="Top" Height="35" Background="White" BorderBrush="#FF6FB5FB" Foreground="#FF0078D7" FontWeight="Bold" Click="Button_Click_4" Margin="0,51,0,0"/>
             </Grid>
         </Expander>
-        <Expander x:Name="menu2" Header="Administración" FontSize="16" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="516,71,255,497" AutomationProperties.Name="menu" d:IsHidden="True" d:IsLocked="True">
+        <Expander x:Name="menu2" Header="Administración" FontSize="16" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="516,71,255,497" AutomationProperties.Name="menu" d:IsLocked="True">
             <Grid Background="#FF0078D7"/>
         </Expander>
-        <Expander x:Name="menu3" Header="Reportes" FontSize="16" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="771,71,0,497" d:IsHidden="True" d:IsLocked="True">
-            <Grid Background="#FF0078D7"/>
+        <Expander x:Name="menu3" Header="Reportes" FontSize="16" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="771,71,0,497">
+            <Grid Background="#FF0078D7">
+                <Button Content="test" HorizontalAlignment="Left" Margin="86,22,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_6"/>
+            </Grid>
         </Expander>
         <Button Style="{DynamicResource HomeButton}" HorizontalAlignment="Left" Margin="25,2,0,0" VerticalAlignment="Top" Height="63" Width="66" Click="Button_Click_5" BorderBrush="{x:Null}" d:IsLocked="True">
             <Button.Background>

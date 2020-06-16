@@ -12,9 +12,9 @@ namespace ProyectoDiagnos.Utils
     class Conectar
     {
 
-        static string rp = "server='localhost';port='3606';userid='root';password='';database='clinica';";
+        static string rp = "server=localhost; port=3306; userid=root; password=; database=clinica;";
 
-        private void ConectarDB()
+        public MySqlDataReader ConectarDB(String query)
         {
             MySqlConnection cn = new MySqlConnection(rp);
 
@@ -22,6 +22,9 @@ namespace ProyectoDiagnos.Utils
             {
                 cn.Open();
                 MySqlDataReader rd = null;
+                MySqlCommand cm = new MySqlCommand(query, cn);
+                rd = cm.ExecuteReader();
+                return rd;
 
             }
             catch (Exception)
