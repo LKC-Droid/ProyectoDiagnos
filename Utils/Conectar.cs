@@ -36,6 +36,13 @@ namespace ProyectoDiagnos.Utils
 
     }
 
-    
+    /* Para conectar y hacer consulta
+     * Conectar cn = new Conectar();
+            MySqlDataReader datos = cn.ConectarDB("show tables");
+            while (datos.Read())
+            {
+                MessageBox.Show(datos.GetString(0));
+            }
+     * */
 
 }

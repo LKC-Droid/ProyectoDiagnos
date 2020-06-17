@@ -292,21 +292,23 @@
                 <Label Content="Agenda" Canvas.Left="408" Canvas.Top="10" Height="84" Width="188" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
                 <Rectangle Height="11" Canvas.Top="94" Width="1004" Fill="#FF0078D7"/>
                 <Label x:Name="TimeLabel" Content="00:00" FontSize="66" Foreground="#FF0078D7" FontWeight="Bold" FontStyle="Normal" Padding="1,-12,32,-7" RenderTransformOrigin="0.488,0.481" Height="96" Canvas.Left="36" Canvas.Top="4" Width="279" />
-                <ListBox x:Name="ListadeCitas" Height="483" Canvas.Left="36" Canvas.Top="154" Width="929" BorderBrush="#FF0078D7" SelectionChanged="ListBox_SelectionChanged">
-                    <Border BorderBrush="Black" BorderThickness="1" Height="100" Width="100"/>
+                <ListBox x:Name="ListadeCitas" Height="483" Canvas.Left="36" Canvas.Top="154" Width="929" BorderBrush="#FF0078D7">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Grid x:Name="plantilla2" Height="65" Width="919" Background="#FF0078D7" >
-                                <Rectangle x:Name="estadoCita" Fill="#FF383838" HorizontalAlignment="Left" Height="65" Stroke="#00C9BCBC" VerticalAlignment="Top" Width="18" Margin="10,0,0,0"/>
-                                <Label x:Name="nombrePaciente" Content="{Binding Nombre}" HorizontalAlignment="Left" Margin="96,12,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20" FontWeight="Bold"/>
-                                <Label x:Name="horaCita" Content="{Binding Fecha}" HorizontalAlignment="Left" Margin="585,10,0,0" VerticalAlignment="Top" Background="#00000000" Foreground="White" FontSize="22" FontWeight="Bold"/>
-                                <CheckBox Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="794,28,0,0" Height="21" Width="19"/>
-                                <Rectangle Fill="White" HorizontalAlignment="Left" Height="65" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="49,0,0,0"/>
-                                <Rectangle Fill="White" HorizontalAlignment="Left" Height="67" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="537,-1,0,0"/>
-                                <Rectangle Fill="White" HorizontalAlignment="Left" Height="65" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="743,0,0,0"/>
-                            </Grid>
+                            <Canvas Background="#FF0078D7" Margin="0" Height="68" VerticalAlignment="Stretch">
+                                <Rectangle Fill="#FF0078D7" Height="68" Stroke="#00C9BCBC" Width="1000000"/>
+                                <Label Content="{Binding Id}" Canvas.Left="5" Canvas.Top="12" Foreground="White" FontSize="24" Width="68" HorizontalContentAlignment="Center"/>
+                                <Label Content="{Binding NombreCompleto}" Canvas.Left="84" Canvas.Top="12" Foreground="White" FontSize="24"/>
+                                <Label Content="{Binding Hora}" Foreground="White" RenderTransformOrigin="25.667,2.051" Canvas.Left="519" Canvas.Top="10" FontSize="24"/>
+                                <CheckBox Content="" Height="21" Width="19" Canvas.Left="737" Canvas.Top="25" RenderTransformOrigin="-0.719,0.429"/>
+                                <Rectangle Fill="White" Height="65" Stroke="#01000000" VerticalAlignment="Top" Width="3" Canvas.Left="472" Canvas.Top="-1"/>
+                                <Rectangle Fill="White" HorizontalAlignment="Left" Height="67" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="0" Canvas.Left="65"/>
+                                <Rectangle Fill="White" Height="65" Stroke="#01000000" Width="3" Margin="0" Canvas.Left="689" Canvas.Top="2"/>
+                            </Canvas>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
+                        
+                    
                 </ListBox>
             </Canvas>
             <Canvas x:Name="Registro_de_cita" Background="White" AutomationProperties.Name="nuevaCita" Height="660" Canvas.Left="-10" Width="1004" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Hidden">
@@ -315,7 +317,7 @@
             </Canvas>
         </Canvas>
         <Canvas x:Name="Pacientes" Margin="10,114,10,10" Background="White" AutomationProperties.Name="Agenda" Visibility="Visible">
-            <Canvas x:Name="AñadirPaciente" Background="White" AutomationProperties.Name="Agenda" Height="660" Width="1004" Visibility="Visible">
+            <Canvas x:Name="AñadirPaciente" Background="White" AutomationProperties.Name="Agenda" Height="651" Width="1004" Visibility="Visible">
                 <Label Content="Nuevo paciente" Canvas.Left="320" Canvas.Top="10" Height="84" Width="364" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
                 <Rectangle Height="11" Canvas.Top="94" Width="1004" Fill="#FF0078D7"/>
                 <Label Content="Nombre:" Canvas.Left="398" Canvas.Top="194"/>
@@ -336,7 +338,7 @@
                 <TextBox Canvas.Left="474" Canvas.Top="339" Text="&#xA;" TextWrapping="Wrap" Width="210" Height="22"/>
                 <Button Style="{DynamicResource BorderRoundedCorner}" Content="Registrar Paciente" Canvas.Left="434" Canvas.Top="570" Width="144" Height="43" Background="#FF0078D7" BorderBrush="{x:Null}" Foreground="White" FontSize="16"/>
             </Canvas>
-            <Canvas x:Name="ListaDePacientes" Background="White" AutomationProperties.Name="nuevaCita" Height="660" Width="994" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Visible">
+            <Canvas x:Name="ListaDePacientes" Background="White" AutomationProperties.Name="nuevaCita" Height="652" Width="994" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Visible">
                 <Label Content="Lista de pacientes registrados" Canvas.Left="149" Canvas.Top="10" Height="84" Width="696" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
                 <Rectangle Height="11" Canvas.Top="94" Width="1004" Fill="#FF0078D7"/>
                 <TextBox Canvas.Left="54" Canvas.Top="153" TextWrapping="Wrap" Width="308" Height="27" BorderBrush="#FF0078D7"/>
@@ -351,16 +353,12 @@
                 <ListBox x:Name="ListadePacientes" Width="950" Height="447" Background="#FFE0E0E0" Margin="23,188,0,0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                 <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="200"/>
-                                    <ColumnDefinition Width="400"/>
-                                </Grid.ColumnDefinitions>
+                            <WrapPanel>
                                 <Label Content="{Binding Rut}" HorizontalAlignment="Left" Foreground="#FF0078D7" FontSize="24" FontWeight="Bold"></Label>
-                                     
-                                <Label Content="{Binding NombreCompleto}" HorizontalAlignment="Left" Grid.Column="1" Foreground="#FF0078D7" FontSize="24" FontWeight="Bold"  ></Label>
 
-                            </Grid>
+                                <Label Content="{Binding NombreCompleto}" HorizontalAlignment="Left" Foreground="#FF0078D7" FontSize="24" FontWeight="Bold"  ></Label>
+                            </WrapPanel>
+                          
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>

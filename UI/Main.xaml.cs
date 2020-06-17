@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using Diagnos.Modelos.DTO;
+using ProyectoDiagnos.Modelos.DTO;
 using MySql.Data.MySqlClient;
 using ProyectoDiagnos.Utils;
 
@@ -35,12 +35,13 @@ namespace Diagnos.Vistas
         {
             List<CitaMedica> citasAgendadas = new List<CitaMedica>();
             List<Paciente> listaPacientes = new List<Paciente>();
-            Paciente p = new Paciente("Aquiles","Baeza","cueca","123");
-            Paciente p2 = new Paciente("Aquisssles", "Baesza", "cuecas", "123s");
-            Paciente p3 = new Paciente("Aquilesa", "Baezaa", "cuecaa", "123a");
-            DateTime tm = new DateTime();
-            CitaMedica ct = new CitaMedica(1, tm.Date, p, "pronto");
-            CitaMedica ct2 = new CitaMedica(1, tm.Date, p, "pronto");
+            Paciente p = new Paciente("Aquiles","pinto","casas","123");
+            Paciente p2 = new Paciente("Elvis", "tek", "delgado", "123s");
+            Paciente p3 = new Paciente("Elsa", "pito", "doblados", "123a");
+            DateTime tm = new DateTime(2020,05,12,14,25,00);
+            DateTime tm2 = DateTime.Now;
+            CitaMedica ct = new CitaMedica(1, tm, p, "Yellow");
+            CitaMedica ct2 = new CitaMedica(2, tm2, p2, "Green");
 
             citasAgendadas.Add(ct);
             citasAgendadas.Add(ct2);
@@ -50,6 +51,7 @@ namespace Diagnos.Vistas
             listaPacientes.Add(p3);
 
             ListadePacientes.ItemsSource = listaPacientes;
+            ListadeCitas.ItemsSource = citasAgendadas;
 
 
         }
@@ -128,14 +130,7 @@ namespace Diagnos.Vistas
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
-            Conectar cs = new Conectar();
 
-            MySqlDataReader rd = cs.ConectarDB("Show tables");
-
-            while (rd.Read())
-            {
-                MessageBox.Show(rd.GetString(0));
-            }
 
             lista();
         }

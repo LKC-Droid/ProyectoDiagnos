@@ -11,16 +11,20 @@ namespace ProyectoDiagnos.Modelos.DTO
         private DateTime fecha;
         private Paciente paciente;
         private string estado;
+        private string nombreCompleto;
+        private string hora;
         //public Especialista esp;
         public DateTime Fecha { get => fecha; set => fecha = value; }
         internal Paciente Paciente { get => paciente; set => paciente = value; }
         public int Id { get => id; set => id = value; }
         public string Estado { get => estado; set => estado = value; }
+        public string NombreCompleto { get => nombreCompleto; set => nombreCompleto = value; }
+        public string Hora { get => hora; set => hora = value; }
 
         public void Init()
         {
             id = 0;
-            Fecha = new DateTime(1900, 1, 1, 0, 00, 00);
+            Fecha = new DateTime();
             Paciente Paciente = new Paciente(paciente);
             //Especialista Espl = new Especialista(esp);
         }
@@ -31,11 +35,14 @@ namespace ProyectoDiagnos.Modelos.DTO
             Fecha = fc;
             Paciente = p;
             Estado = estado;
+            NombreCompleto = p.NombreCompleto;
+            Hora = this.Fecha.ToString("hh:mm tt");
+
         }
 
         public override string ToString()
         {
-            return this.Paciente.Nombre + this.Fecha;
+            return this.NombreCompleto + this.Fecha.ToString("hh:mm") + this.Estado;
         }
 
 
