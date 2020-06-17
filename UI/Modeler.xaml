@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDiagnos.UI"
         mc:Ignorable="d"
-        Title="Modeler" Height="450" Width="800">
-    <Canvas Background="#FF0078D7" Margin="0" Height="68" VerticalAlignment="Top">
-        <Rectangle Fill="#FF0078D7" Height="68" Stroke="#00C9BCBC" Width="792"/>
-        <Label Content="" Canvas.Left="5" Canvas.Top="12" Foreground="White" FontSize="24" Width="68"/>
-        <Label Content="2asdasd" Canvas.Left="84" Canvas.Top="12" Foreground="White" FontSize="24"/>
-        <Label Content="2" Foreground="White" RenderTransformOrigin="25.667,2.051" Canvas.Left="519" Canvas.Top="10" FontSize="24"/>
-        <CheckBox Content="" Height="21" Width="19" Canvas.Left="737" Canvas.Top="25" RenderTransformOrigin="-0.719,0.429"/>
-        <Rectangle Fill="White" Height="65" Stroke="#01000000" VerticalAlignment="Top" Width="3" Canvas.Left="472" Canvas.Top="-1"/>
-        <Rectangle Fill="White" HorizontalAlignment="Left" Height="67" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="0" Canvas.Left="78"/>
-        <Rectangle Fill="White" Height="65" Stroke="#01000000" Width="3" Margin="0" Canvas.Left="689" Canvas.Top="2"/>
+        Title="Modeler" Height="450" Width="950">
+    <Canvas Background="#FF0078D7" Margin="0,0,2,0" Height="85" VerticalAlignment="Top">
+        <Rectangle Fill="#FF0078D7" Height="68" Stroke="#00C9BCBC" Width="945" HorizontalAlignment="Right"/>
+        <Label Content="18.165.325-8" Canvas.Left="1" Canvas.Top="12" Foreground="White" FontSize="24"/>
+        <Label Content="2" Foreground="White" RenderTransformOrigin="25.667,2.051" Canvas.Left="166" Canvas.Top="10" FontSize="24"/>
+        <Label Content="77" Foreground="White" RenderTransformOrigin="25.667,2.051" Canvas.Left="830" Canvas.Top="10" FontSize="24" HorizontalAlignment="Right"/>
+        <Label Content="Años" Foreground="White" RenderTransformOrigin="25.667,2.051" Canvas.Left="869" Canvas.Top="10" FontSize="24" HorizontalContentAlignment="Center" HorizontalAlignment="Right"/>
+        <Rectangle Fill="White" Height="67" Stroke="#01000000" VerticalAlignment="Top" Width="3" Canvas.Left="818" Canvas.Top="-1" HorizontalAlignment="Right"/>
+        <Rectangle Fill="White" HorizontalAlignment="Left" Height="67" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="0" Canvas.Left="160"/>
+
     </Canvas>
 </Window>

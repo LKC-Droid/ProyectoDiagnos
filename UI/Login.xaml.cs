@@ -101,7 +101,8 @@ namespace Diagnos.Vistas
         {
             if (e.Key == Key.Enter)
             {
-                LoginButton.Focus();
+                
+                Button_Click(sender, e);
             }
         }
 

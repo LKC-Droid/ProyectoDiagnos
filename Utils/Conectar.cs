@@ -34,6 +34,26 @@ namespace ProyectoDiagnos.Utils
             }
         }
 
+        public void InsertarDB(String query)
+        {
+            MySqlConnection cn = new MySqlConnection(rp);
+
+            try
+            {
+                cn.Open();
+                MySqlDataReader rd = null;
+                MySqlCommand cm = new MySqlCommand(query, cn);
+                rd = cm.ExecuteReader();
+                MessageBox.Show("Se ha registrado con exito!");
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se ha podido insertar los datos");
+                throw;
+            }
+        }
+
     }
 
     /* Para conectar y hacer consulta

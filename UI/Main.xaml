@@ -307,8 +307,8 @@
                             </Canvas>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                        
-                    
+
+
                 </ListBox>
             </Canvas>
             <Canvas x:Name="Registro_de_cita" Background="White" AutomationProperties.Name="nuevaCita" Height="660" Canvas.Left="-10" Width="1004" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Hidden">
@@ -341,28 +341,35 @@
             <Canvas x:Name="ListaDePacientes" Background="White" AutomationProperties.Name="nuevaCita" Height="652" Width="994" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Visible">
                 <Label Content="Lista de pacientes registrados" Canvas.Left="149" Canvas.Top="10" Height="84" Width="696" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
                 <Rectangle Height="11" Canvas.Top="94" Width="1004" Fill="#FF0078D7"/>
-                <TextBox Canvas.Left="54" Canvas.Top="153" TextWrapping="Wrap" Width="308" Height="27" BorderBrush="#FF0078D7"/>
-                <Button Content="" Canvas.Left="367" Canvas.Top="148" Height="32" Width="37" BorderBrush="{x:Null}" Margin="0">
+                <TextBox Canvas.Left="188" Canvas.Top="594" TextWrapping="Wrap" Width="308" Height="27" BorderBrush="#FF0078D7"/>
+                <Button Content="" Canvas.Left="500" Canvas.Top="589" Height="32" Width="38" BorderBrush="{x:Null}" Margin="0">
                     <Button.Background>
                         <ImageBrush ImageSource="/Resources/images/loupe.png"/>
                     </Button.Background>
                 </Button>
-                <Label Content="Buscar Paciente" Canvas.Left="51" Canvas.Top="119" FontWeight="Bold" Foreground="#FF0078D7" FontSize="20"/>
-                <Button Content="Editar" Canvas.Left="791" Canvas.Top="153" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="18" RenderTransformOrigin="0.062,0.514" Width="62"/>
-                <Button Content="Eliminar" Canvas.Left="867" Canvas.Top="153" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="18"/>
-                <ListBox x:Name="ListadePacientes" Width="950" Height="447" Background="#FFE0E0E0" Margin="23,188,0,0">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                            <WrapPanel>
-                                <Label Content="{Binding Rut}" HorizontalAlignment="Left" Foreground="#FF0078D7" FontSize="24" FontWeight="Bold"></Label>
+                <Label Content="Buscar Paciente" Canvas.Left="26" Canvas.Top="589" FontWeight="Bold" Foreground="#FF0078D7" FontSize="20"/>
+                <Button Content="Editar" Canvas.Left="824" Canvas.Top="589" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="18" RenderTransformOrigin="0.062,0.514" Width="62"/>
+                <Button Content="Eliminar" Canvas.Left="900" Canvas.Top="589" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="18"/>
+                <ListBox x:Name="ListadePacientes" Width="950" Height="444" Background="#FFE0E0E0" Canvas.Left="23" Canvas.Top="140">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Canvas Background="#FF0078D7" Margin="0" Height="67" VerticalAlignment="Top" Width="945">
+                                <Rectangle Fill="#FF0078D7" Height="68" Stroke="#00C9BCBC" Width="1024"/>
+                                <Label Content="{Binding Rut}" Canvas.Left="1" Canvas.Top="12" Foreground="White" FontSize="24"/>
+                                <Label Content="{Binding NombreCompleto}" Foreground="White" RenderTransformOrigin="25.667,2.051" Canvas.Left="166" Canvas.Top="10" FontSize="24"/>
+                                <Label Content="21" Foreground="White" RenderTransformOrigin="25.667,2.051" Canvas.Left="830" Canvas.Top="10" FontSize="24"/>
+                                <Label Content="Años" Foreground="White" RenderTransformOrigin="25.667,2.051" Canvas.Left="869" Canvas.Top="10" FontSize="24"/>
+                                <Rectangle Fill="White" Height="65" Stroke="#01000000" VerticalAlignment="Top" Width="3" Canvas.Left="818" Canvas.Top="-1"/>
+                                <Rectangle Fill="White" HorizontalAlignment="Left" Height="67" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="0" Canvas.Left="160"/>
 
-                                <Label Content="{Binding NombreCompleto}" HorizontalAlignment="Left" Foreground="#FF0078D7" FontSize="24" FontWeight="Bold"  ></Label>
-                            </WrapPanel>
-                          
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                
+                            </Canvas>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Label Content="RUT" Canvas.Left="88" Canvas.Top="107" FontWeight="Bold" Foreground="#FF0078D7" FontSize="20" Height="39"/>
+                <Label Content="Nombre del paciente" Canvas.Left="381" Canvas.Top="107" FontWeight="Bold" Foreground="#FF0078D7" FontSize="20" Height="39"/>
+                <Label Content="Edad" Canvas.Left="900" Canvas.Top="107" FontWeight="Bold" Foreground="#FF0078D7" FontSize="20" RenderTransformOrigin="0.464,0.486" Height="39"/>
+
 
             </Canvas>
         </Canvas>

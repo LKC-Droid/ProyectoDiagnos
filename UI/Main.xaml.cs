@@ -35,9 +35,9 @@ namespace Diagnos.Vistas
         {
             List<CitaMedica> citasAgendadas = new List<CitaMedica>();
             List<Paciente> listaPacientes = new List<Paciente>();
-            Paciente p = new Paciente("Aquiles","pinto","casas","123");
-            Paciente p2 = new Paciente("Elvis", "tek", "delgado", "123s");
-            Paciente p3 = new Paciente("Elsa", "pito", "doblados", "123a");
+            Paciente p = new Paciente("Aquiles","pinto","casas","14.262.926-8");
+            Paciente p2 = new Paciente("Elvis", "tek", "delgado", "12.265.741.-5");
+            Paciente p3 = new Paciente("Armando", "Estaban", "Quito", "10.178.885-k");
             DateTime tm = new DateTime(2020,05,12,14,25,00);
             DateTime tm2 = DateTime.Now;
             CitaMedica ct = new CitaMedica(1, tm, p, "Yellow");
@@ -130,7 +130,9 @@ namespace Diagnos.Vistas
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
-
+            Conectar cn = new Conectar();
+            cn.InsertarDB("INSERT INTO `usuarios`(`rut`, `pass`) VALUES (123,321)");
+            
 
             lista();
         }
