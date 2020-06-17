@@ -225,6 +225,59 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <SolidColorBrush x:Key="Item.MouseOver.Background" Color="#1F26A0DA"/>
+        <SolidColorBrush x:Key="Item.MouseOver.Border" Color="#a826A0Da"/>
+        <SolidColorBrush x:Key="Item.SelectedInactive.Background" Color="#3DDADADA"/>
+        <SolidColorBrush x:Key="Item.SelectedInactive.Border" Color="#FFDADADA"/>
+        <SolidColorBrush x:Key="Item.SelectedActive.Background" Color="#3D26A0DA"/>
+        <SolidColorBrush x:Key="Item.SelectedActive.Border" Color="#FF26A0DA"/>
+        <Style x:Key="Citas" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Padding" Value="4,1"/>
+            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.MouseOver.Border}"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Border}"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Selector.IsSelectionActive" Value="True"/>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Border}"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid>
         <Rectangle Height="70" VerticalAlignment="Top" Fill="#FF0078D7"/>
@@ -234,24 +287,26 @@
         <Label x:Name="NombreDoctor" Content="%UserName%" HorizontalAlignment="Left" Margin="786,25,0,0" VerticalAlignment="Top" Background="Transparent" Foreground="White" Width="210" FontSize="22" Height="40" FontWeight="Normal" FontStretch="Medium"/>
         <Image x:Name="Logo" HorizontalAlignment="Left" Height="67" VerticalAlignment="Top" Width="572" Source="/Resources/images/Image1.png" Margin="161,0,0,0"/>
         <Rectangle HorizontalAlignment="Stretch" Height="27" Margin="0,68,0,0" VerticalAlignment="Top" Width="1024" Fill="White"/>
-        <Canvas x:Name="Agenda" Margin="10,114,10,10" Background="White" AutomationProperties.Name="Agenda" Visibility="Visible">
+        <Canvas x:Name="Agenda" Margin="10,114,10,10" Background="White" AutomationProperties.Name="Agenda" Visibility="Hidden">
             <Canvas x:Name="Citas" Background="White" AutomationProperties.Name="Agenda" Height="660" Width="1004" Visibility="Visible">
                 <Label Content="Agenda" Canvas.Left="408" Canvas.Top="10" Height="84" Width="188" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
                 <Rectangle Height="11" Canvas.Top="94" Width="1004" Fill="#FF0078D7"/>
-                <Button Content="Nueva cita" Canvas.Left="852" Canvas.Top="33" Height="38" Width="113" Click="Button_Click"/>
                 <Label x:Name="TimeLabel" Content="00:00" FontSize="66" Foreground="#FF0078D7" FontWeight="Bold" FontStyle="Normal" Padding="1,-12,32,-7" RenderTransformOrigin="0.488,0.481" Height="96" Canvas.Left="36" Canvas.Top="4" Width="279" />
-                <ListBox Height="483" Canvas.Left="36" Canvas.Top="154" Width="929" BorderBrush="#FF0078D7">
-                    <ListBoxItem Height="65" Selected="ListBoxItem_Selected" Width="861" Margin="0,18,0,0" BorderBrush="#FF6FB5FB">
-                        <Grid Height="65" Width="919">
-                            <Rectangle Fill="#FF383838" HorizontalAlignment="Left" Height="65" Stroke="Black" VerticalAlignment="Top" Width="18" Margin="10,0,0,0"/>
-                            <Label Content="%Nombre%" HorizontalAlignment="Left" Margin="96,12,0,0" VerticalAlignment="Top" Foreground="#FF0078D7" FontSize="20" FontWeight="Bold"/>
-                            <Label Content="%Hora%" HorizontalAlignment="Left" Margin="585,10,0,0" VerticalAlignment="Top" Background="#00000000" Foreground="#FF0078D7" FontSize="22" FontWeight="Bold"/>
-                            <CheckBox Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="794,28,0,0" Height="21" Width="19"/>
-                            <Rectangle Fill="#FF0078D7" HorizontalAlignment="Left" Height="65" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="49,0,0,0"/>
-                            <Rectangle Fill="#FF0078D7" HorizontalAlignment="Left" Height="65" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="537,3,0,-3"/>
-                            <Rectangle Fill="#FF0078D7" HorizontalAlignment="Left" Height="65" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="743,0,0,0"/>
-                        </Grid>
-                    </ListBoxItem>
+                <ListBox x:Name="ListadeCitas" Height="483" Canvas.Left="36" Canvas.Top="154" Width="929" BorderBrush="#FF0078D7" SelectionChanged="ListBox_SelectionChanged">
+                    <Border BorderBrush="Black" BorderThickness="1" Height="100" Width="100"/>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid x:Name="plantilla2" Height="65" Width="919" Background="#FF0078D7" >
+                                <Rectangle x:Name="estadoCita" Fill="#FF383838" HorizontalAlignment="Left" Height="65" Stroke="#00C9BCBC" VerticalAlignment="Top" Width="18" Margin="10,0,0,0"/>
+                                <Label x:Name="nombrePaciente" Content="{Binding Nombre}" HorizontalAlignment="Left" Margin="96,12,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20" FontWeight="Bold"/>
+                                <Label x:Name="horaCita" Content="{Binding Fecha}" HorizontalAlignment="Left" Margin="585,10,0,0" VerticalAlignment="Top" Background="#00000000" Foreground="White" FontSize="22" FontWeight="Bold"/>
+                                <CheckBox Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="794,28,0,0" Height="21" Width="19"/>
+                                <Rectangle Fill="White" HorizontalAlignment="Left" Height="65" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="49,0,0,0"/>
+                                <Rectangle Fill="White" HorizontalAlignment="Left" Height="67" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="537,-1,0,0"/>
+                                <Rectangle Fill="White" HorizontalAlignment="Left" Height="65" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="743,0,0,0"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
                 </ListBox>
             </Canvas>
             <Canvas x:Name="Registro_de_cita" Background="White" AutomationProperties.Name="nuevaCita" Height="660" Canvas.Left="-10" Width="1004" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Hidden">
@@ -259,7 +314,7 @@
                 <Rectangle Height="11" Canvas.Top="94" Width="1004" Fill="#FF0078D7"/>
             </Canvas>
         </Canvas>
-        <Canvas x:Name="Pacientes" Margin="10,114,10,10" Background="White" AutomationProperties.Name="Agenda" Visibility="Visible" d:IsHidden="True">
+        <Canvas x:Name="Pacientes" Margin="10,114,10,10" Background="White" AutomationProperties.Name="Agenda" Visibility="Visible">
             <Canvas x:Name="AñadirPaciente" Background="White" AutomationProperties.Name="Agenda" Height="660" Width="1004" Visibility="Visible">
                 <Label Content="Nuevo paciente" Canvas.Left="320" Canvas.Top="10" Height="84" Width="364" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
                 <Rectangle Height="11" Canvas.Top="94" Width="1004" Fill="#FF0078D7"/>
@@ -284,15 +339,8 @@
             <Canvas x:Name="ListaDePacientes" Background="White" AutomationProperties.Name="nuevaCita" Height="660" Width="994" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Visible">
                 <Label Content="Lista de pacientes registrados" Canvas.Left="149" Canvas.Top="10" Height="84" Width="696" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
                 <Rectangle Height="11" Canvas.Top="94" Width="1004" Fill="#FF0078D7"/>
-                <ListView Height="414" Width="886" Canvas.Left="54" Canvas.Top="185">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
                 <TextBox Canvas.Left="54" Canvas.Top="153" TextWrapping="Wrap" Width="308" Height="27" BorderBrush="#FF0078D7"/>
-                <Button Content="" Canvas.Left="367" Canvas.Top="148" Height="32" Width="37" BorderBrush="{x:Null}">
+                <Button Content="" Canvas.Left="367" Canvas.Top="148" Height="32" Width="37" BorderBrush="{x:Null}" Margin="0">
                     <Button.Background>
                         <ImageBrush ImageSource="/Resources/images/loupe.png"/>
                     </Button.Background>
@@ -300,6 +348,24 @@
                 <Label Content="Buscar Paciente" Canvas.Left="51" Canvas.Top="119" FontWeight="Bold" Foreground="#FF0078D7" FontSize="20"/>
                 <Button Content="Editar" Canvas.Left="791" Canvas.Top="153" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="18" RenderTransformOrigin="0.062,0.514" Width="62"/>
                 <Button Content="Eliminar" Canvas.Left="867" Canvas.Top="153" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="18"/>
+                <ListBox x:Name="ListadePacientes" Width="950" Height="447" Background="#FFE0E0E0" Margin="23,188,0,0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                 <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="400"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="{Binding Rut}" HorizontalAlignment="Left" Foreground="#FF0078D7" FontSize="24" FontWeight="Bold"></Label>
+                                     
+                                <Label Content="{Binding NombreCompleto}" HorizontalAlignment="Left" Grid.Column="1" Foreground="#FF0078D7" FontSize="24" FontWeight="Bold"  ></Label>
+
+                            </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                
+
             </Canvas>
         </Canvas>
         <Expander x:Name="menu1" Header="Pacientes" FontSize="16" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="263,71,508,497" AutomationProperties.Name="menu" d:IsLocked="True" d:IsHidden="True">
@@ -311,7 +377,7 @@
         <Expander x:Name="menu2" Header="Administración" FontSize="16" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="516,71,255,497" AutomationProperties.Name="menu" d:IsLocked="True">
             <Grid Background="#FF0078D7"/>
         </Expander>
-        <Expander x:Name="menu3" Header="Reportes" FontSize="16" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="771,71,0,497">
+        <Expander x:Name="menu3" Header="Reportes" FontSize="16" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="771,71,0,497" d:IsLocked="True">
             <Grid Background="#FF0078D7">
                 <Button Content="test" HorizontalAlignment="Left" Margin="86,22,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_6"/>
             </Grid>

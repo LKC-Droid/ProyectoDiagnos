@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Diagnos.Modelos.DTO;
 using MySql.Data.MySqlClient;
 using ProyectoDiagnos.Utils;
 
@@ -27,6 +28,30 @@ namespace Diagnos.Vistas
             LiveTime.Interval = TimeSpan.FromSeconds(1);
             LiveTime.Tick += timer_Tick;
             LiveTime.Start();
+            lista();
+        }
+
+        public void lista()
+        {
+            List<CitaMedica> citasAgendadas = new List<CitaMedica>();
+            List<Paciente> listaPacientes = new List<Paciente>();
+            Paciente p = new Paciente("Aquiles","Baeza","cueca","123");
+            Paciente p2 = new Paciente("Aquisssles", "Baesza", "cuecas", "123s");
+            Paciente p3 = new Paciente("Aquilesa", "Baezaa", "cuecaa", "123a");
+            DateTime tm = new DateTime();
+            CitaMedica ct = new CitaMedica(1, tm.Date, p, "pronto");
+            CitaMedica ct2 = new CitaMedica(1, tm.Date, p, "pronto");
+
+            citasAgendadas.Add(ct);
+            citasAgendadas.Add(ct2);
+
+            listaPacientes.Add(p);
+            listaPacientes.Add(p2);
+            listaPacientes.Add(p3);
+
+            ListadePacientes.ItemsSource = listaPacientes;
+
+
         }
 
         void timer_Tick(object sender, EventArgs e)
@@ -96,16 +121,6 @@ namespace Diagnos.Vistas
             menu.IsExpanded = false;
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void ListBoxItem_Selected(object sender, RoutedEventArgs e)
         {
 
@@ -121,6 +136,13 @@ namespace Diagnos.Vistas
             {
                 MessageBox.Show(rd.GetString(0));
             }
+
+            lista();
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+                
         }
     }
 }

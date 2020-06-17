@@ -15,6 +15,7 @@ namespace Diagnos.Modelos.DTO
         public string numeroTelefono;
         public string email;
         public string enfCron;
+        private string nombreCompleto;
 
 
         public string Nombre { get => _nombre; set => _nombre = value; }
@@ -27,6 +28,7 @@ namespace Diagnos.Modelos.DTO
         public string EnfCron { get => enfCron; set => enfCron = value; }
         public DateTime FechaNac { get => fechaNac; set => fechaNac = value; }
         public string Rut { get => rut; set => rut = value; }
+        public string NombreCompleto { get => nombreCompleto; set => nombreCompleto = value; }
 
         public void Init()
         {
@@ -38,6 +40,7 @@ namespace Diagnos.Modelos.DTO
             FechaNac = new DateTime(1900, 1, 1);
             Email = string.Empty;
             EnfCron = string.Empty;
+
         }
 
 
@@ -47,6 +50,7 @@ namespace Diagnos.Modelos.DTO
             ApellidoP = apellidoP;
             ApellidoM = apellidoM;
             Rut = rut;
+            NombreCompleto = _nombre + " " + apellidoP + " " + ApellidoM;
         }
 
         public Paciente(Paciente p)
@@ -55,6 +59,12 @@ namespace Diagnos.Modelos.DTO
             ApellidoP = p.ApellidoP;
             ApellidoM = p.ApellidoM;
             Rut = p.Rut;
+        }
+
+        public override string ToString()
+        {
+            var NombreCompleto = this.Nombre + " " + this.ApellidoP + " " + this.ApellidoM;
+            return this.NombreCompleto+ this.Rut;
         }
 
     }
