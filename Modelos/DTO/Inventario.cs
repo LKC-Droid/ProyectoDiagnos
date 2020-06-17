@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Formativa2.Clases
+namespace ProyectoDiagnos.Modelos.DTO
 {
     class Inventario
     {

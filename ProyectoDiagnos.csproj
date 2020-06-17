@@ -61,11 +61,15 @@
     <Compile Include="Modelos\DTO\CitaMedica.cs" />
     <Compile Include="Modelos\DTO\Clasevacía-NOTOCAR.cs" />
     <Compile Include="Modelos\DTO\Especialista.cs" />
+    <Compile Include="Modelos\DTO\EspecialistaTratamiento.cs" />
     <Compile Include="Modelos\DTO\ficha.cs" />
     <Compile Include="Modelos\DTO\Insumo.cs" />
     <Compile Include="Modelos\DTO\Inventario.cs" />
     <Compile Include="Modelos\DTO\Paciente.cs" />
+    <Compile Include="Modelos\DTO\Pago.cs" />
     <Compile Include="Modelos\DTO\Presupuesto.cs" />
+    <Compile Include="Modelos\DTO\PresupuestoPago.cs" />
+    <Compile Include="Modelos\DTO\Tratamiento.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
