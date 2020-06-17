@@ -16,6 +16,7 @@ namespace ProyectoDiagnos.Modelos.DTO
         public string email;
         public string enfCron;
         private string nombreCompleto;
+        private int edad;
 
 
         public string Nombre { get => _nombre; set => _nombre = value; }
@@ -29,6 +30,7 @@ namespace ProyectoDiagnos.Modelos.DTO
         public DateTime FechaNac { get => fechaNac; set => fechaNac = value; }
         public string Rut { get => rut; set => rut = value; }
         public string NombreCompleto { get => nombreCompleto; set => nombreCompleto = value; }
+        public int Edad { get => edad; set => edad = value; }
 
         public void Init()
         {
@@ -44,13 +46,17 @@ namespace ProyectoDiagnos.Modelos.DTO
         }
 
 
-        public Paciente(string _nombre, string apellidoP, string apellidoM, string rut)
+        public Paciente(string _nombre, string apellidoP, string apellidoM, string rut, DateTime fechanac)
         {
             Nombre = _nombre;
             ApellidoP = apellidoP;
             ApellidoM = apellidoM;
             Rut = rut;
+            FechaNac = fechanac;
             NombreCompleto = _nombre + " " + apellidoP + " " + ApellidoM;
+            
+            int calEdad = DateTime.Today.AddTicks(-fechaNac.Ticks).Year - 1;
+            Edad = calEdad;
         }
 
         public Paciente(Paciente p)
@@ -59,6 +65,9 @@ namespace ProyectoDiagnos.Modelos.DTO
             ApellidoP = p.ApellidoP;
             ApellidoM = p.ApellidoM;
             Rut = p.Rut;
+        }
+        public Paciente()
+        {
         }
 
         public override string ToString()

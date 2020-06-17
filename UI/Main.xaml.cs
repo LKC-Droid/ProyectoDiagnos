@@ -21,6 +21,8 @@ namespace Diagnos.Vistas
     /// </summary>
     public partial class Main : Window
     {
+        List<CitaMedica> citasAgendadas = new List<CitaMedica>();
+        List<Paciente> listaPacientes = new List<Paciente>();
         public Main()
         {
             InitializeComponent();
@@ -28,32 +30,70 @@ namespace Diagnos.Vistas
             LiveTime.Interval = TimeSpan.FromSeconds(1);
             LiveTime.Tick += timer_Tick;
             LiveTime.Start();
-            lista();
+            listas();
+            cargarCitas();
         }
 
-        public void lista()
+        public void listas()
         {
-            List<CitaMedica> citasAgendadas = new List<CitaMedica>();
-            List<Paciente> listaPacientes = new List<Paciente>();
-            Paciente p = new Paciente("Aquiles","pinto","casas","14.262.926-8");
-            Paciente p2 = new Paciente("Elvis", "tek", "delgado", "12.265.741.-5");
-            Paciente p3 = new Paciente("Armando", "Estaban", "Quito", "10.178.885-k");
-            DateTime tm = new DateTime(2020,05,12,14,25,00);
-            DateTime tm2 = DateTime.Now;
-            CitaMedica ct = new CitaMedica(1, tm, p, "Yellow");
-            CitaMedica ct2 = new CitaMedica(2, tm2, p2, "Green");
+            
 
-            citasAgendadas.Add(ct);
-            citasAgendadas.Add(ct2);
 
-            listaPacientes.Add(p);
-            listaPacientes.Add(p2);
-            listaPacientes.Add(p3);
+            Conectar cn = new Conectar();
+            MySqlDataReader rd = cn.ConectarDB("select * from paciente");
+
+            if (rd.HasRows)
+            {
+                while (rd.Read())
+                {
+                    for (int i = 0; i < rd.FieldCount; i++)
+                    {
+                        Paciente p = new Paciente(rd.GetString(1),rd.GetString(2),rd.GetString(3),rd.GetString(0),rd.GetDateTime(4));
+                        listaPacientes.Add(p);
+                        break;
+                    }
+                }
+            }
+
 
             ListadePacientes.ItemsSource = listaPacientes;
+
+        }
+
+        public void cargarCitas()
+        {
+            Conectar cn = new Conectar();
+            MySqlDataReader rd2 = cn.ConectarDB("select * from citamedica");
+
+            if (rd2.HasRows)
+            {
+                while (rd2.Read())
+                {
+                    for (int i = 0; i < rd2.FieldCount; i++)
+                    {
+                        Paciente p = new Paciente();
+                        MySqlDataReader rd = cn.ConectarDB("select * from paciente WHERE rut='"+ rd2.GetString(2)+"'");
+
+                        if (rd.HasRows)
+                        {
+                            while (rd.Read())
+                            {
+                                for (int k = 0; k < rd.FieldCount; k++)
+                                {
+                                    p = new Paciente(rd.GetString(1), rd.GetString(2), rd.GetString(3), rd.GetString(0), rd.GetDateTime(4));
+                                    break;
+                                }
+                            }
+                        }
+                        CitaMedica cm = new CitaMedica(rd2.GetInt32(0), rd2.GetDateTime(1), rd2.GetString(2), rd2.GetString(3), rd2.GetString(4), p);
+                       citasAgendadas.Add(cm);
+                        break;
+                    }
+                }
+            }
+
+            
             ListadeCitas.ItemsSource = citasAgendadas;
-
-
         }
 
         void timer_Tick(object sender, EventArgs e)
@@ -110,6 +150,8 @@ namespace Diagnos.Vistas
             menu.IsExpanded = false;
 
             AñadirPaciente.Visibility = Visibility.Hidden;
+            Agenda.Visibility = Visibility.Hidden;
+            Pacientes.Visibility = Visibility.Visible;
             ListaDePacientes.Visibility = Visibility.Visible;
         }
 
@@ -134,7 +176,6 @@ namespace Diagnos.Vistas
             cn.InsertarDB("INSERT INTO `usuarios`(`rut`, `pass`) VALUES (123,321)");
             
 
-            lista();
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
