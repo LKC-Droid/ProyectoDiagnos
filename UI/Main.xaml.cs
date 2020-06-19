@@ -13,6 +13,8 @@ using System.Windows.Threading;
 using ProyectoDiagnos.Modelos.DTO;
 using MySql.Data.MySqlClient;
 using ProyectoDiagnos.Utils;
+using System.Windows.Forms;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace Diagnos.Vistas
 {
@@ -30,15 +32,15 @@ namespace Diagnos.Vistas
             LiveTime.Interval = TimeSpan.FromSeconds(1);
             LiveTime.Tick += timer_Tick;
             LiveTime.Start();
-            listas();
             cargarCitas();
         }
 
         public void listas()
         {
-            
-
-
+            ListadePacientes.ItemsSource = null;
+            ListadePacientes.Items.Clear();
+            listaPacientes.Clear();
+           
             Conectar cn = new Conectar();
             MySqlDataReader rd = cn.ConectarDB("select * from paciente");
 
@@ -54,7 +56,6 @@ namespace Diagnos.Vistas
                     }
                 }
             }
-
 
             ListadePacientes.ItemsSource = listaPacientes;
 
@@ -181,6 +182,81 @@ namespace Diagnos.Vistas
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
                 
+        }
+
+        private void RegistrarPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            Conectar cn = new Conectar();
+            try
+            {
+                string date = IgFechaNac.SelectedDate.Value.ToString("yyyy-MM-dd");
+                MySqlDataReader rd = cn.ConectarDB("INSERT INTO `paciente`(`rut`, `nombre`, `apellidopaterno`, `apellidomaterno`, `fechanac`, `telefono`) VALUES ('"+IgRut.Text+"','"+IgNombre.Text+"','"+IgAP.Text+"','"+IgAM.Text+"','"+date+"','"+IgTelefono.Text+"')");
+                MessageBox.Show("Se ha agregado correctamente al paciente");
+
+                AñadirPaciente.Visibility = Visibility.Hidden;
+                Agenda.Visibility = Visibility.Hidden;
+                Pacientes.Visibility = Visibility.Visible;
+                ListaDePacientes.Visibility = Visibility.Visible;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: "+ex.InnerException);
+                throw;
+            }
+            
+        }
+
+        private void ActualizarLista_Click(object sender, RoutedEventArgs e)
+        {
+            listas();
+        }
+
+        private void ListadePacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        bool IsDigitsOnly(string str)
+        {
+            foreach (char c in str)
+            {
+                if (c < '0' || c > '9' || c > '-' || c > '.')
+                    return false;
+            }
+
+            return true;
+        }
+
+        private void EliminarPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            string user = ListadePacientes.SelectedItem.ToString();
+            string rut = System.Text.RegularExpressions.Regex.Replace(user, "[^0-9-.]", "");
+
+            Conectar cn = new Conectar();
+            try
+            {
+                DialogResult result = new DialogResult();
+
+                result = MessageBox.Show("¿Desea eliminar al paciente?", "Eliminar Paciente", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    
+                    cn.ConectarDB("DELETE FROM `paciente` WHERE rut='" + rut+"'");
+                    MessageBox.Show("Se ha eliminado el paciente correctamente", "Exito!");
+                    listas();
+                    AñadirPaciente.Visibility = Visibility.Hidden;
+                    Agenda.Visibility = Visibility.Hidden;
+                    Pacientes.Visibility = Visibility.Visible;
+                    ListaDePacientes.Visibility = Visibility.Visible;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex);
+                throw;
+            }
+
         }
     }
 }

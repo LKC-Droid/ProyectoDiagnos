@@ -64,7 +64,7 @@ namespace Diagnos.Vistas
             }
             catch (Exception e)
             {
-                MessageBox.Show("No se ha podido conectar a la base de datos: ");
+                MessageBox.Show("No se ha podido conectar a la base de datos: "+e);
                 throw;
             }
         }
@@ -88,7 +88,7 @@ namespace Diagnos.Vistas
 
         void timer_Tick(object sender, EventArgs e)
         {
-            Hora.Content = DateTime.Now.ToString("HH:mm");
+            Hora.Content = DateTime.Now.ToString("HH:mm tt");
         }
     
 

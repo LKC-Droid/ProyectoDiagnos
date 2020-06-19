@@ -6,14 +6,13 @@
         xmlns:local="clr-namespace:ProyectoDiagnos.UI"
         mc:Ignorable="d"
         Title="Modeler" Height="450" Width="950">
-    <Canvas Background="#FF0078D7" Margin="0" Height="68" VerticalAlignment="Stretch">
-        <Rectangle Fill="#FF0078D7" Height="68" Stroke="#00C9BCBC" Width="1000000"/>
-        <Label Content="{Binding Id}" Canvas.Left="5" Canvas.Top="12" Foreground="White" FontSize="24" Width="68" HorizontalContentAlignment="Center"/>
-        <Label Content="{Binding NombreCompleto}" Canvas.Left="84" Canvas.Top="12" Foreground="White" FontSize="24"/>
-        <Label Content="{Binding Hora}" Foreground="White" RenderTransformOrigin="9.6,2.3" Canvas.Left="632" Canvas.Top="3" FontSize="36" FontWeight="Bold"/>
-        <CheckBox Content="" Height="21" Width="19" Canvas.Left="891" Canvas.Top="24" RenderTransformOrigin="-0.719,0.429"/>
-        <Rectangle Fill="White" Height="65" Stroke="#01000000" VerticalAlignment="Top" Width="3" Canvas.Left="576"/>
-        <Rectangle Fill="White" HorizontalAlignment="Left" Height="67" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="0" Canvas.Left="65"/>
-        <Rectangle Fill="White" Height="65" Stroke="#01000000" Width="3" Margin="0" Canvas.Left="854" Canvas.Top="3"/>
+    <Canvas Background="#FF0078D7" Margin="0" Height="67" VerticalAlignment="Top" Width="935">
+        <Rectangle Fill="#FF0078D7" Height="68" Stroke="#00C9BCBC" Width="1024" Canvas.Left="-12" Canvas.Top="-1"/>
+        <Label Content="{Binding Rut}" Canvas.Top="10" Foreground="White" FontSize="20" Height="45" Width="173" FontWeight="Bold"/>
+        <Label Content="{Binding Edad}" Foreground="White" RenderTransformOrigin="25.667,2.051" Canvas.Left="830" Canvas.Top="10" FontSize="24"/>
+        <Label Content="Años" Foreground="White" RenderTransformOrigin="25.667,2.051" Canvas.Left="869" Canvas.Top="10" FontSize="24"/>
+        <Rectangle Fill="White" Height="65" Stroke="#01000000" VerticalAlignment="Top" Width="3" Canvas.Left="818" Canvas.Top="-1"/>
+        <Rectangle Fill="White" HorizontalAlignment="Left" Height="67" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="0" Canvas.Left="178"/>
+        <Label Content="{Binding NombreCompleto}" Canvas.Top="4" Foreground="White" FontSize="20" Canvas.Left="186" Padding="0"/>
     </Canvas>
 </Window>
