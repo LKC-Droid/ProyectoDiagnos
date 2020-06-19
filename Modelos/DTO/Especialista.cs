@@ -38,6 +38,7 @@ namespace Diagnos.Modelos.DTO
             this.Telefono = telefono;
         }
 
+
         public string Rut { get => rut; set => rut = value; }
         public string Nombre { get => nombre; set => nombre = value; }
         public string Apellido { get => apellido; set => apellido = value; }
@@ -45,7 +46,5 @@ namespace Diagnos.Modelos.DTO
         public string Especialidad { get => especialidad; set => especialidad = value; }
         public string Correo { get => correo; set => correo = value; }
         public int Telefono { get => telefono; set => telefono = value; }
-
-       
     }
 }

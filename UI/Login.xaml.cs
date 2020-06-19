@@ -42,14 +42,14 @@ namespace Diagnos.Vistas
             {
                 cn.Open();
                 MySqlDataReader rd = null;
-                MySqlCommand cm = new MySqlCommand("SELECT * FROM `usuarios` WHERE rut='"+ rutId.Text+ "' AND pass='"+pass.Password+"'", cn);
+                MySqlCommand cm = new MySqlCommand("SELECT * FROM `especialista` WHERE rut='"+ rutId.Text+ "' AND contrasena='"+pass.Password+"'", cn);
                 rd = cm.ExecuteReader();
                 if (rd.HasRows)
                 {
                     while (rd.Read())
                     {
                         string user = rd.GetString(0);
-                        string ps = rd.GetString(1);
+                        string ps = rd.GetString(8);
 
                         Verificar(user, ps);
                     }
@@ -74,12 +74,12 @@ namespace Diagnos.Vistas
                 if (rutId.Text == user & pass.Password == ps)
                 {
                 this.Hide();
-                Main NuevaVentana = new Main();
+                Main NuevaVentana = new Main(user);
                 NuevaVentana.Show();
                 }
                 else
                 {
-                MessageBox.Show("Usuario o contraseña incorrectas");
+                MessageBox.Show("Usuario o contraseña incorrectas"+user+ps);
                 pass.Password = "";
             
                 }

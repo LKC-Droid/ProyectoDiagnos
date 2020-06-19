@@ -15,6 +15,7 @@ using MySql.Data.MySqlClient;
 using ProyectoDiagnos.Utils;
 using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
+using Diagnos.Modelos.DTO;
 
 namespace Diagnos.Vistas
 {
@@ -25,7 +26,7 @@ namespace Diagnos.Vistas
     {
         List<CitaMedica> citasAgendadas = new List<CitaMedica>();
         List<Paciente> listaPacientes = new List<Paciente>();
-        public Main()
+        public Main(string usuario)
         {
             InitializeComponent();
             DispatcherTimer LiveTime = new DispatcherTimer();
@@ -33,7 +34,18 @@ namespace Diagnos.Vistas
             LiveTime.Tick += timer_Tick;
             LiveTime.Start();
             cargarCitas();
+            Conectar cn = new Conectar();
+            MySqlDataReader rd = cn.ConectarDB("SELECT * FROM `especialista` WHERE rut='" + usuario + "'");
+
+            while (rd.Read())
+            {
+                NombreDoctor.Content = rd.GetString(1) + " " + rd.GetString(3);
+            }
+            
+
         }
+
+       
 
         public void listas()
         {
@@ -257,6 +269,13 @@ namespace Diagnos.Vistas
                 throw;
             }
 
+        }
+
+        private void Salir_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            Login NuevaVentana = new Login();
+            NuevaVentana.Show();
         }
     }
 }

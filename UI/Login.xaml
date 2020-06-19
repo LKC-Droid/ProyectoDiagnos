@@ -19,9 +19,9 @@
         <Label Name="fecha" Content="%TIME%" HorizontalAlignment="Left" Margin="29,301,0,0" VerticalAlignment="Top" FontSize="36" Foreground="White" FontWeight="Bold" FontStyle="Normal" Width="319" Height="58" Background="#FF3688FF"/>
         <Label x:Name="fecha2" Content="%TIME%" HorizontalAlignment="Left" Margin="29,358,0,0" VerticalAlignment="Top" FontSize="36" Foreground="White" FontWeight="Bold" FontStyle="Normal" Width="319" Height="57" Background="#FF6DA2FF"/>
         <Label x:Name="Año" Content="%TIME%" HorizontalAlignment="Left" Margin="29,415,0,0" VerticalAlignment="Top" FontSize="36" Foreground="White" FontWeight="Bold" FontStyle="Normal" Width="319" Height="54" Background="#FF86AFF7"/>
-        <Rectangle HorizontalAlignment="Left" Height="254" Margin="19,301,0,0" VerticalAlignment="Top" Width="5" Fill="#FF0078D7" Stroke="White"/>
-        <Rectangle HorizontalAlignment="Left" Height="5" Margin="24,553,0,0" Stroke="White" VerticalAlignment="Top" Width="323" Fill="#FF0078D7"/>
-        <Label x:Name="Hora" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="72" Foreground="#FF0078D7" FontWeight="Bold" FontStyle="Normal" Width="348" Height="105" Margin="29,448,0,0" Padding="1,-12,32,-7" RenderTransformOrigin="0.488,0.481" UseLayoutRounding="False"/>
+        <Rectangle HorizontalAlignment="Left" Height="254" Margin="6,301,0,0" VerticalAlignment="Top" Width="4" Fill="#FF0078D7" Stroke="White"/>
+        <Rectangle HorizontalAlignment="Left" Height="5" Margin="8,554,0,0" Stroke="White" VerticalAlignment="Top" Width="339" Fill="#FF0078D7"/>
+        <Label x:Name="Hora" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="72" Foreground="#FF0078D7" FontWeight="Bold" FontStyle="Normal" Width="351.5" Height="105" Margin="15,454,0,0" Padding="1,-12,32,-7" RenderTransformOrigin="0.488,0.481" UseLayoutRounding="False"/>
 
     </Grid>
 </Window>

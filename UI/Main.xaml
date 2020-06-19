@@ -479,8 +479,8 @@
         <Rectangle Height="70" VerticalAlignment="Top" Fill="#FF0078D7"/>
         <Rectangle HorizontalAlignment="Left" Height="53" Margin="129,7,0,0" VerticalAlignment="Top" Width="3" Fill="White"/>
         <Rectangle HorizontalAlignment="Left" Height="53" Margin="744,10,0,0" VerticalAlignment="Top" Width="3" Fill="White"/>
-        <Label Content="Bienvenido&#xD;&#xA;" HorizontalAlignment="Left" Margin="834,-6,0,0" VerticalAlignment="Top" Background="Transparent" Foreground="White" Width="128" FontSize="22" Height="40" FontWeight="Bold"/>
-        <Label x:Name="NombreDoctor" Content="Karel Goldenberg" HorizontalAlignment="Left" Margin="771,25,0,0" VerticalAlignment="Top" Background="Transparent" Foreground="White" Width="237" FontSize="22" Height="40" FontWeight="Normal" FontStretch="Medium" HorizontalContentAlignment="Center"/>
+        <Label Content="Bienvenido&#xD;&#xA;" HorizontalAlignment="Left" Margin="800,-6,0,0" VerticalAlignment="Top" Background="Transparent" Foreground="White" Width="128" FontSize="22" Height="40" FontWeight="Bold"/>
+        <Label x:Name="NombreDoctor" Content="Karel Goldenberg" HorizontalAlignment="Left" Margin="752,27,0,0" VerticalAlignment="Top" Background="Transparent" Foreground="White" Width="237" FontSize="22" Height="40" FontWeight="Normal" FontStretch="Medium" HorizontalContentAlignment="Center"/>
         <Image x:Name="Logo" HorizontalAlignment="Left" Height="67" VerticalAlignment="Top" Width="572" Source="/Resources/images/Image1.png" Margin="161,0,0,0"/>
         <Rectangle HorizontalAlignment="Stretch" Height="27" Margin="0,68,0,0" VerticalAlignment="Top" Width="1024" Fill="White"/>
         <Canvas x:Name="Agenda" Margin="10,114,22,10" Background="White" AutomationProperties.Name="Agenda">
@@ -598,5 +598,6 @@
             </Grid>
         </Expander>
         <Label Content="Label" HorizontalAlignment="Left" Margin="1108,483,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="Salir" Content="Salir" HorizontalAlignment="Left" Margin="933,10,0,0" VerticalAlignment="Top" Width="75" Click="Salir_Click"/>
     </Grid>
 </Window>
