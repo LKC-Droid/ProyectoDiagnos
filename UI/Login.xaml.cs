@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using ProyectoDiagnos.Utils;
 
 namespace Diagnos.Vistas
 {
@@ -51,35 +52,52 @@ namespace Diagnos.Vistas
                         string user = rd.GetString(0);
                         string ps = rd.GetString(8);
 
-                        Verificar(user, ps);
+                        Verificar(user, ps,"Esp");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Usuario o contraseña incorrectas");
-                    pass.Password = "";
+
+                    Conectar cn2 = new Conectar();
+                    MySqlDataReader rd2 = cn2.ConectarDB("SELECT * FROM `administrativo` WHERE rut='" + rutId.Text + "' AND contrasena='" + pass.Password + "'");
+                    if (rd2.HasRows)
+                    {
+                        while (rd2.Read())
+                        {
+                            string user = rd2.GetString(0);
+                            string ps = rd2.GetString(7);
+
+                            Verificar(user, ps,"Admin");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuario o contraseña incorrectas","Datos de usuario no validos",MessageBoxButton.OK,MessageBoxImage.Information);
+                        pass.Password = "";
+                    }
+                    
                 }
                 
 
             }
             catch (Exception e)
             {
-                MessageBox.Show("No se ha podido conectar a la base de datos: "+e);
+                MessageBox.Show("No se ha podido conectar a la base de datos: "+e,"Error de conexión");
                 throw;
             }
         }
 
-        private void Verificar(String user, String ps)
+        private void Verificar(String user, String ps,string tipo)
         {
                 if (rutId.Text == user & pass.Password == ps)
                 {
                 this.Hide();
-                Main NuevaVentana = new Main(user);
+                Main NuevaVentana = new Main(user,tipo);
                 NuevaVentana.Show();
                 }
                 else
                 {
-                MessageBox.Show("Usuario o contraseña incorrectas"+user+ps);
+                MessageBox.Show("Usuario o contraseña incorrectas","Error de conexión");
                 pass.Password = "";
             
                 }
@@ -88,7 +106,7 @@ namespace Diagnos.Vistas
 
         void timer_Tick(object sender, EventArgs e)
         {
-            Hora.Content = DateTime.Now.ToString("HH:mm tt");
+            Hora.Content = DateTime.Now.ToString("HH:mm");
         }
     
 

@@ -26,26 +26,78 @@ namespace Diagnos.Vistas
     {
         List<CitaMedica> citasAgendadas = new List<CitaMedica>();
         List<Paciente> listaPacientes = new List<Paciente>();
-        public Main(string usuario)
+        public Main(string usuario,string tipo)
         {
             InitializeComponent();
             DispatcherTimer LiveTime = new DispatcherTimer();
             LiveTime.Interval = TimeSpan.FromSeconds(1);
             LiveTime.Tick += timer_Tick;
             LiveTime.Start();
-            cargarCitas();
-            Conectar cn = new Conectar();
-            MySqlDataReader rd = cn.ConectarDB("SELECT * FROM `especialista` WHERE rut='" + usuario + "'");
 
-            while (rd.Read())
-            {
-                NombreDoctor.Content = rd.GetString(1) + " " + rd.GetString(3);
-            }
+            TipoDeUsuario(usuario, tipo);
             
 
         }
 
-       
+        private void TipoDeUsuario(string usuario, string tipo)
+        {
+            if (tipo == "Esp")
+            {
+                cargarCitas(usuario);
+                Conectar cn = new Conectar();
+                MySqlDataReader rd = cn.ConectarDB("SELECT * FROM `especialista` WHERE rut='" + usuario + "'");
+
+                while (rd.Read())
+                {
+                    NombreDoctor.Content = rd.GetString(1) + " " + rd.GetString(2);
+                }
+            }
+            else
+            {
+                cargarCitas2();
+                Conectar cn = new Conectar();
+                MySqlDataReader rd = cn.ConectarDB("SELECT * FROM `administrativo` WHERE rut='" + usuario + "'");
+
+                while (rd.Read())
+                {
+                    NombreDoctor.Content = rd.GetString(1) + " " + rd.GetString(2);
+                }
+            }
+        }
+
+        private void cargarCitas2()
+        {
+            Conectar cn = new Conectar();
+            MySqlDataReader rd2 = cn.ConectarDB("select * from citamedica");
+
+            if (rd2.HasRows)
+            {
+                while (rd2.Read())
+                {
+                    for (int i = 0; i < rd2.FieldCount; i++)
+                    {
+                        Paciente p = new Paciente();
+                        MySqlDataReader rd = cn.ConectarDB("select * from paciente WHERE rut='" + rd2.GetString(2) + "'");
+
+                        if (rd.HasRows)
+                        {
+                            while (rd.Read())
+                            {
+                                for (int k = 0; k < rd.FieldCount; k++)
+                                {
+                                    p = new Paciente(rd.GetString(1), rd.GetString(2), rd.GetString(3), rd.GetString(0), rd.GetDateTime(4));
+                                    break;
+                                }
+                            }
+                        }
+                        CitaMedica cm = new CitaMedica(rd2.GetInt32(0), rd2.GetDateTime(1), rd2.GetString(2), rd2.GetString(3), rd2.GetString(4), p);
+                        citasAgendadas.Add(cm);
+                        break;
+                    }
+                }
+            }
+            ListadeCitas.ItemsSource = citasAgendadas;
+        }
 
         public void listas()
         {
@@ -73,10 +125,10 @@ namespace Diagnos.Vistas
 
         }
 
-        public void cargarCitas()
+        public void cargarCitas(string rut_esp)
         {
             Conectar cn = new Conectar();
-            MySqlDataReader rd2 = cn.ConectarDB("select * from citamedica");
+            MySqlDataReader rd2 = cn.ConectarDB("select * from citamedica WHERE especialista_rut='"+rut_esp+"'");
 
             if (rd2.HasRows)
             {

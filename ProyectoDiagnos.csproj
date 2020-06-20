@@ -163,13 +163,21 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\images\logout.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\images\dentist.png" />
     <Resource Include="Resources\images\Home.png" />
     <Resource Include="Resources\images\Image1.png" />
     <Resource Include="Resources\images\LogIn.png" />
     <Resource Include="Resources\images\loupe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\images\logout1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\images\gear.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
