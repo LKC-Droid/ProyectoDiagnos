@@ -25,7 +25,9 @@ namespace Diagnos.Vistas
     public partial class Main : Window
     {
         List<CitaMedica> citasAgendadas = new List<CitaMedica>();
+        List<Paciente> listaPacientesCitas = new List<Paciente>();
         List<Paciente> listaPacientes = new List<Paciente>();
+        List<Especialista> listaEspecialistas = new List<Especialista>();
         public Main(string usuario,string tipo)
         {
             InitializeComponent();
@@ -33,11 +35,15 @@ namespace Diagnos.Vistas
             LiveTime.Interval = TimeSpan.FromSeconds(1);
             LiveTime.Tick += timer_Tick;
             LiveTime.Start();
-
+            listas();
             TipoDeUsuario(usuario, tipo);
             
 
         }
+
+        /// <summary>
+        /// Métodos para el proyecto
+        /// </summary>
 
         private void TipoDeUsuario(string usuario, string tipo)
         {
@@ -165,30 +171,24 @@ namespace Diagnos.Vistas
         {
             TimeLabel.Content = DateTime.Now.ToString("HH:mm");
         }
+        //##############################################################################################################################################
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
-           
-
-        }
-
+        //Menu principal
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
             //Abrir la agenda de las citas ya registradas
+            AñadirPaciente.Visibility = Visibility.Hidden;
             Pacientes.Visibility = Visibility.Hidden;
             Agenda.Visibility = Visibility.Visible;
+            Registro_de_cita.Visibility = Visibility.Hidden;
+            Citas.Visibility = Visibility.Visible;
             menu3.IsExpanded = false;
             menu2.IsExpanded = false;
             menu1.IsExpanded = false;
             menu.IsExpanded = false;
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            
-        }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
@@ -230,11 +230,6 @@ namespace Diagnos.Vistas
             menu.IsExpanded = false;
         }
 
-        private void ListBoxItem_Selected(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
             Conectar cn = new Conectar();
@@ -243,6 +238,16 @@ namespace Diagnos.Vistas
 
         }
 
+        private void Salir_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            Login NuevaVentana = new Login();
+            NuevaVentana.Show();
+        }
+
+        //###################################################################################
+
+        //Menú pacientes
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
                 
@@ -264,7 +269,7 @@ namespace Diagnos.Vistas
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: "+ex.InnerException);
+                MessageBox.Show("Error: "+ex.Message);
                 throw;
             }
             
@@ -317,17 +322,103 @@ namespace Diagnos.Vistas
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex);
+                MessageBox.Show("Error: " + ex.Message);
                 throw;
             }
 
         }
 
-        private void Salir_Click(object sender, RoutedEventArgs e)
+      //######################################################################################
+
+        //Menú de citas
+
+        private void BotonNuevaCita_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Hide();
-            Login NuevaVentana = new Login();
-            NuevaVentana.Show();
+            AñadirPaciente.Visibility = Visibility.Hidden;
+            Agenda.Visibility = Visibility.Visible;
+            Registro_de_cita.Visibility = Visibility.Visible;
+            Citas.Visibility = Visibility.Hidden;
+            cargarEsp();
+        }
+
+
+        private void CitaBuscarPaciente_KeyUp_1(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            listaPacientesCitas.Clear();
+            string buscar = CitaBuscarPaciente.Text;
+                Conectar cn = new Conectar();
+                MySqlDataReader rd = cn.ConectarDB("SELECT * FROM `paciente` WHERE CONCAT_WS(' ', nombre, apellidopaterno) LIKE '%" + buscar + "%' OR rut LIKE '%" + buscar + "%' ORDER BY nombre");
+                if (rd.HasRows)
+                {
+                    while (rd.Read())
+                    {
+                        for (int i = 0; i < rd.FieldCount; i++)
+                        {
+                            Paciente p = new Paciente(rd.GetString(1), rd.GetString(2), rd.GetString(3), rd.GetString(0), rd.GetDateTime(4));
+                            listaPacientesCitas.Add(p);
+                            break;
+                        }
+                    }
+                }
+
+            if (listaPacientesCitas.Count == 0)
+            {
+                
+            }
+            else
+            {
+                SelPaciente.ItemsSource = null;
+                SelPaciente.ItemsSource = listaPacientesCitas;
+            }
+                      
+            
+        }
+
+        private void cargarEsp()
+        {
+            Conectar cn = new Conectar();
+            MySqlDataReader rd = cn.ConectarDB("SELECT * FROM `especialista`");
+
+            while (rd.Read())
+            {
+                for (int i = 0; i < rd.FieldCount; i++)
+                {
+                    Especialista esp = new Especialista(rd.GetString(0), rd.GetString(1), rd.GetString(2));
+                    listaEspecialistas.Add(esp);
+                    break;
+                }
+            }
+            SelPaciente_Copy.ItemsSource = listaEspecialistas;
+        }
+
+        private void TextBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            listaPacientes.Clear();
+            string buscar = BuscarPaciente.Text;
+            Conectar cn = new Conectar();
+            MySqlDataReader rd = cn.ConectarDB("SELECT * FROM `paciente` WHERE CONCAT_WS(' ', nombre, apellidopaterno) LIKE '%" + buscar + "%' OR rut LIKE '%" + buscar + "%' ORDER BY nombre");
+            if (rd.HasRows)
+            {
+                while (rd.Read())
+                {
+                    for (int i = 0; i < rd.FieldCount; i++)
+                    {
+                        Paciente p = new Paciente(rd.GetString(1), rd.GetString(2), rd.GetString(3), rd.GetString(0), rd.GetDateTime(4));
+                        listaPacientes.Add(p);
+                        break;
+                    }
+                }
+            }
+
+            if (listaPacientes.Count == 0)
+            {
+
+            }
+            else
+            {
+                ListadePacientes.ItemsSource = null;
+                ListadePacientes.ItemsSource = listaPacientes;
+            }
         }
     }
 }

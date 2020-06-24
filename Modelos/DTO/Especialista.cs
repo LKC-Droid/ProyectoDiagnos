@@ -13,7 +13,7 @@ namespace Diagnos.Modelos.DTO
         private string especialidad;
         private string correo;
         private int telefono;
-
+        private string nombreCompleto;
         public Especialista(){}
 
         public Especialista(Especialista e)
@@ -36,6 +36,15 @@ namespace Diagnos.Modelos.DTO
             this.Especialidad = especialidad;
             this.Correo = correo;
             this.Telefono = telefono;
+            this.NombreCompleto = nombre + " " + apellido;
+        }
+
+        public Especialista(string rut, string nombre, string apellido)
+        {
+            this.Rut = rut;
+            this.Nombre = nombre;
+            this.Apellido = apellido;
+            this.NombreCompleto = nombre + " " + apellido;
         }
 
 
@@ -46,5 +55,6 @@ namespace Diagnos.Modelos.DTO
         public string Especialidad { get => especialidad; set => especialidad = value; }
         public string Correo { get => correo; set => correo = value; }
         public int Telefono { get => telefono; set => telefono = value; }
+        public string NombreCompleto { get => nombreCompleto; set => nombreCompleto = value; }
     }
 }

@@ -82,7 +82,7 @@ namespace Diagnos.Vistas
             }
             catch (Exception e)
             {
-                MessageBox.Show("No se ha podido conectar a la base de datos: "+e,"Error de conexión");
+                MessageBox.Show("No se ha podido conectar a la base de datos: "+e.Message,"Error de conexión");
                 throw;
             }
         }
