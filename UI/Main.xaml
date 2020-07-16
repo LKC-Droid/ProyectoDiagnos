@@ -581,8 +581,8 @@
         <Label x:Name="NombreDoctor" Content="%user%" HorizontalAlignment="Left" Margin="609,23,0,0" VerticalAlignment="Top" Background="Transparent" Foreground="White" Width="237" FontSize="22" Height="40" FontWeight="Normal" FontStretch="Medium" HorizontalContentAlignment="Left"/>
         <Image x:Name="Logo" HorizontalAlignment="Left" Height="67" VerticalAlignment="Top" Width="572" Source="/Resources/images/Image1.png"/>
         <Rectangle HorizontalAlignment="Stretch" Height="27" Margin="0,68,0,0" VerticalAlignment="Top" Width="1024" Fill="White"/>
-        <Canvas x:Name="Agenda" Margin="10,114,22,10" Background="White" AutomationProperties.Name="Agenda">
-            <Canvas x:Name="Citas" Background="White" AutomationProperties.Name="Agenda" Height="647" Width="994" Visibility="Visible" d:IsHidden="True">
+        <Canvas x:Name="Agenda" Margin="10,114,22,5" Background="White" AutomationProperties.Name="Agenda" d:IsHidden="True">
+            <Canvas x:Name="Citas" Background="White" AutomationProperties.Name="Agenda" Height="652" Width="998" Visibility="Visible">
                 <Label Content="Agenda" Canvas.Left="398" Canvas.Top="10" Height="84" Width="188" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
                 <Button x:Name="BotonNuevaCita" Content="Nueva Cita" Background="{x:Null}" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.062,0.514" Height="40" Canvas.Left="592" Canvas.Top="583" Width="113" Click="BotonNuevaCita_Click_1" Cursor="Hand"/>
                 <Rectangle Height="11" Canvas.Top="94" Width="994" Fill="#FF0078D7"/>
@@ -618,7 +618,7 @@
                 <Button x:Name="BotonNuevaCita_Copy" Content="Editar" Background="{x:Null}" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="18" RenderTransformOrigin="0.062,0.514" Height="38" Canvas.Left="765" Canvas.Top="583" Width="94" Click="BotonNuevaCita_Click_1" Cursor="Hand"/>
                 <Button x:Name="BotonNuevaCita_Copy1" Content="Eliminar" Background="{x:Null}" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="18" RenderTransformOrigin="0.062,0.514" Height="38" Canvas.Left="864" Canvas.Top="583" Width="89" Click="BotonNuevaCita_Click_1" Cursor="Hand"/>
             </Canvas>
-            <Canvas x:Name="Registro_de_cita" Background="White" AutomationProperties.Name="nuevaCita" Height="647" Width="986" ScrollViewer.VerticalScrollBarVisibility="Disabled" Canvas.Left="10" Visibility="Hidden">
+            <Canvas x:Name="Registro_de_cita" Background="White" AutomationProperties.Name="nuevaCita" Height="652" Width="998" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <Label Content="Nueva cita médica" Canvas.Left="275" Canvas.Top="10" Height="84" Width="454" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
                 <Rectangle Height="11" Canvas.Top="94" Width="986" Fill="#FF0078D7"/>
                 <ListBox x:Name="SelPaciente" Height="99" Canvas.Left="275" Canvas.Top="148" Width="414" BorderBrush="#FF0078D7" Background="#FFE8E8E8">
@@ -638,16 +638,16 @@
                 <Label Content="Buscar paciente" Canvas.Left="205" Canvas.Top="110" FontWeight="Bold" Foreground="#FF0078D7" FontSize="20"/>
                 <TextBox x:Name="CitaBuscarPaciente" Canvas.Left="367" Canvas.Top="115" TextWrapping="Wrap" Width="308" Height="27" BorderBrush="#FF0078D7" KeyUp="CitaBuscarPaciente_KeyUp_1"/>
                 <Label Content="Seleccionar Especialista" Canvas.Left="367" Canvas.Top="286" FontWeight="Bold" Foreground="#FF0078D7" FontSize="20"/>
-                <Rectangle Height="2" Canvas.Top="269" Width="615" Fill="#FF0078D7" Canvas.Left="147"/>
-                <Rectangle Height="2" Canvas.Top="446" Width="615" Fill="#FF0078D7" Canvas.Left="147"/>
-                <ComboBox Canvas.Left="205" Canvas.Top="502" Width="69" Height="44"/>
+                <Rectangle Height="2" Canvas.Top="279" Width="615" Fill="#FF0078D7" Canvas.Left="147"/>
+                <Rectangle Height="2" Canvas.Top="463" Width="615" Fill="#FF0078D7" Canvas.Left="147"/>
+                <ComboBox x:Name="ComboHora" Canvas.Left="205" Canvas.Top="502" Width="69" Height="44" FontWeight="Bold" FontSize="24" Foreground="#FF0078D7" Background="{x:Null}" />
                 <Label Content="Hora" Canvas.Left="205" Canvas.Top="465" FontWeight="Bold" Foreground="#FF0078D7" FontSize="20" Width="69"/>
-                <ComboBox Canvas.Left="323" Canvas.Top="502" Width="69" Height="44"/>
+                <ComboBox x:Name="ComboMin" Canvas.Left="323" Canvas.Top="502" Width="69" Height="44" FontWeight="Bold" FontSize="24" Foreground="#FF0078D7"/>
                 <Label Content="Min" Canvas.Left="323" Canvas.Top="465" FontWeight="Bold" Foreground="#FF0078D7" FontSize="20" Width="69"/>
                 <Label Content=":" Canvas.Left="291" Canvas.Top="502" FontWeight="Bold" Foreground="#FF0078D7" FontSize="24" Width="17"/>
-                <DatePicker Canvas.Left="519" Canvas.Top="516" Width="210"/>
+                <DatePicker x:Name="FechaCita" Canvas.Left="519" Canvas.Top="516" Width="210"/>
                 <Label Content="Fecha de cita" Canvas.Left="542" Canvas.Top="465" FontWeight="Bold" Foreground="#FF0078D7" FontSize="20" Width="210"/>
-                <Rectangle Height="2" Canvas.Top="504" Width="116" Fill="#FF0078D7" Canvas.Left="422" RenderTransformOrigin="0.5,0.5">
+                <Rectangle Height="2" Canvas.Top="513" Width="98" Fill="#FF0078D7" Canvas.Left="431" RenderTransformOrigin="0.5,0.5">
                     <Rectangle.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -658,7 +658,7 @@
                     </Rectangle.RenderTransform>
                 </Rectangle>
                 <Rectangle Height="2" Canvas.Top="562" Width="615" Fill="#FF0078D7" Canvas.Left="147"/>
-                <Button x:Name="RegistrarCita" Style="{DynamicResource BorderRoundedCorner}" Content="Registrar Cita" Canvas.Left="402" Canvas.Top="579" Width="149" Height="43" Background="#FF0078D7" BorderBrush="{x:Null}" Foreground="White" FontSize="16" Click="RegistrarPaciente_Click"/>
+                <Button x:Name="RegistrarCita" Style="{DynamicResource BorderRoundedCorner}" Content="Registrar Cita" Canvas.Left="402" Canvas.Top="579" Width="149" Height="43" Background="#FF0078D7" BorderBrush="{x:Null}" Foreground="White" FontSize="16" Click="RegistrarCita_Click"/>
                 <ListBox x:Name="SelPaciente_Copy" Height="99" Canvas.Left="275" Canvas.Top="328" Width="414" BorderBrush="#FF0078D7" Background="#FFE8E8E8">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -673,10 +673,14 @@
 
 
                 </ListBox>
+                <Button Content="Seleccionar" Canvas.Left="615" Canvas.Top="252" Width="74" Background="#FF0078D7" BorderBrush="#FF0078D7" Foreground="White" Click="SeleccionarPacienteCita"/>
+                <Button Content="Seleccionar" Canvas.Left="615" Canvas.Top="438" Width="74" Background="#FF0078D7" Foreground="White" BorderBrush="#FF0078D7" Click="SeleccionarEspCita"/>
+                <Label x:Name="EspecialistaEscogido" Content="Ningún especialista seleccionado" Canvas.Left="205" Canvas.Top="429" FontWeight="Bold" Foreground="#FF0078D7" FontSize="14" Width="405" Height="31" HorizontalContentAlignment="Center"/>
+                <Label x:Name="PacienteEscogido" Content="Seleccione un paciente y haga click en &quot;Seleccionar&quot;" Canvas.Left="213" Canvas.Top="247" FontWeight="Bold" Foreground="#FF0078D7" FontSize="14" Width="397" Height="29" HorizontalContentAlignment="Center"/>
             </Canvas>
         </Canvas>
-        <Canvas x:Name="Pacientes" Margin="10,114,10,5" Background="White" AutomationProperties.Name="Agenda">
-            <Canvas x:Name="AñadirPaciente" Background="White" AutomationProperties.Name="Agenda" Height="651" Width="994" Visibility="Visible">
+        <Canvas x:Name="Pacientes" Margin="10,114,10,5" Background="White" AutomationProperties.Name="Agenda" d:IsHidden="True">
+            <Canvas x:Name="AñadirPaciente" Background="White" AutomationProperties.Name="Agenda" Height="652" Width="998" Visibility="Visible">
                 <Label Content="Nuevo paciente" Canvas.Left="320" Canvas.Top="10" Height="84" Width="364" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
                 <Rectangle Height="11" Canvas.Top="94" Width="998" Fill="#FF0078D7"/>
                 <Label Content="RUT:" Canvas.Left="420" Canvas.Top="159"/>
@@ -697,7 +701,7 @@
                 <TextBox x:Name="IgEnfermedad" Canvas.Left="472" Canvas.Top="425" TextWrapping="Wrap" Width="212" Height="96"/>
                 <Button x:Name="RegistrarPaciente" Style="{DynamicResource BorderRoundedCorner}" Content="Registrar Paciente" Canvas.Left="434" Canvas.Top="570" Width="144" Height="43" Background="#FF0078D7" BorderBrush="{x:Null}" Foreground="White" FontSize="16" Click="RegistrarPaciente_Click"/>
             </Canvas>
-            <Canvas x:Name="ListaDePacientes" Background="White" AutomationProperties.Name="nuevaCita" Height="652" Width="994" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Visible">
+            <Canvas x:Name="ListaDePacientes" Background="White" AutomationProperties.Name="nuevaCita" Height="652" Width="998" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="Visible">
                 <Label Content="Lista de pacientes registrados" Canvas.Left="149" Canvas.Top="10" Height="84" Width="696" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
                 <Rectangle Height="11" Canvas.Top="94" Width="1004" Fill="#FF0078D7"/>
                 <TextBox x:Name="BuscarPaciente" Canvas.Left="188" Canvas.Top="594" TextWrapping="Wrap" Width="308" Height="27" BorderBrush="#FF0078D7" KeyUp="TextBox_KeyUp"/>
@@ -773,5 +777,61 @@
         </Button>
         <Rectangle HorizontalAlignment="Left" Height="53" Margin="992,10,0,0" VerticalAlignment="Top" Width="3" Fill="White"/>
         <Rectangle HorizontalAlignment="Left" Height="53" Margin="945,10,0,0" VerticalAlignment="Top" Width="3" Fill="White"/>
+        <Canvas x:Name="Administracion" Margin="10,114,22,5" Background="White" AutomationProperties.Name="Agenda">
+            <Canvas x:Name="Inventario" Background="White" AutomationProperties.Name="Agenda" Height="652" Width="998" Visibility="Visible" d:IsHidden="True">
+                <Label Content="Inventario" Canvas.Left="358" Canvas.Top="10" Height="84" Width="256" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
+                <Button x:Name="BotonNuevaCita1" Content="Nuevo insumo" Background="{x:Null}" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.062,0.514" Height="40" Canvas.Left="618" Canvas.Top="581" Width="147" Click="BotonNuevaCita_Click_1" Cursor="Hand"/>
+                <Rectangle Height="11" Canvas.Top="94" Width="994" Fill="#FF0078D7"/>
+                <Label x:Name="TimeLabel1" Content="00:00" FontSize="66" Foreground="#FF0078D7" FontWeight="Bold" FontStyle="Normal" Padding="1,-12,32,-7" RenderTransformOrigin="0.488,0.481" Height="96" Canvas.Left="36" Canvas.Top="4" Width="279" />
+                <ListBox x:Name="ListadeCitas1" Height="424" Canvas.Left="36" Canvas.Top="154" Width="929" BorderBrush="#FF0078D7" Background="#FFE8E8E8">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Canvas Margin="0" Height="68" VerticalAlignment="Stretch">
+                                <Rectangle Fill="#009EC2CD" Height="68" Stroke="#FF0078D7" Width="1024" Canvas.Left="-12" Canvas.Top="-1"/>
+                                <Label Content="{Binding Id}" Canvas.Left="5" Canvas.Top="12" Foreground="#FF0078D7" FontSize="24" Width="68" HorizontalContentAlignment="Center"/>
+                                <Label Content="{Binding NombreCompleto}" Canvas.Left="84" Canvas.Top="12" Foreground="#FF0078D7" FontSize="24"/>
+                                <Label Content="{Binding Hora}" Foreground="#FF0078D7" RenderTransformOrigin="9.6,2.3" Canvas.Left="632" Canvas.Top="3" FontSize="36" FontWeight="Bold"/>
+                                <CheckBox Content="" Height="21" Width="19" Canvas.Left="891" Canvas.Top="24" RenderTransformOrigin="-0.719,0.429"/>
+                                <Rectangle Fill="#FF0078D7" Height="65" Stroke="#01000000" VerticalAlignment="Top" Width="3" Canvas.Left="576"/>
+                                <Rectangle Fill="#FF0078D7" HorizontalAlignment="Left" Height="67" Stroke="#01000000" VerticalAlignment="Top" Width="3" Margin="0" Canvas.Left="65"/>
+                                <Rectangle Fill="#FF0078D7" Height="65" Stroke="#01000000" Width="3" Margin="0" Canvas.Left="854" Canvas.Top="3"/>
+                            </Canvas>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+
+                </ListBox>
+                <Label Content="ID" Canvas.Left="62" Canvas.Top="114" Height="40" Width="46" Background="Transparent" Foreground="#FF0078D7" FontSize="24" FontWeight="Bold"/>
+                <Label Content="Nombre del insumo" Canvas.Left="158" Canvas.Top="114" Height="40" Width="266" Background="Transparent" Foreground="#FF0078D7" FontSize="24" FontWeight="Bold"/>
+                <Label Content="Cantidad" Canvas.Left="835" Canvas.Top="114" Height="40" Width="118" Background="Transparent" Foreground="#FF0078D7" FontSize="24" FontWeight="Bold"/>
+                <TextBox Canvas.Left="194" Canvas.Top="594" TextWrapping="Wrap" Width="308" Height="27" BorderBrush="#FF0078D7"/>
+                <Button Content="" Canvas.Left="518" Canvas.Top="589" Height="32" Width="38" BorderBrush="{x:Null}" Margin="0" Cursor="Hand">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/ProyectoDiagnos;component/Resources/images/loupe.png"/>
+                    </Button.Background>
+                </Button>
+                <Label Content="Buscar Insumo" Canvas.Left="26" Canvas.Top="586" FontWeight="Bold" Foreground="#FF0078D7" FontSize="20"/>
+                <Button x:Name="BotonNuevaCita_Copy2" Content="Editar" Background="{x:Null}" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="18" RenderTransformOrigin="0.062,0.514" Height="38" Canvas.Left="765" Canvas.Top="583" Width="94" Click="BotonNuevaCita_Click_1" Cursor="Hand"/>
+                <Button x:Name="BotonNuevaCita_Copy3" Content="Eliminar" Background="{x:Null}" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="18" RenderTransformOrigin="0.062,0.514" Height="38" Canvas.Left="864" Canvas.Top="583" Width="89" Click="BotonNuevaCita_Click_1" Cursor="Hand"/>
+                <Label Content="Descripción" Canvas.Left="552" Canvas.Top="114" Height="40" Width="153" Background="Transparent" Foreground="#FF0078D7" FontSize="24" FontWeight="Bold"/>
+            </Canvas>
+            <Canvas x:Name="AñadirEspecialista" Background="White" AutomationProperties.Name="Agenda" Height="652" Width="998" Visibility="Visible">
+                <Label Content="Nuevo Especialista" Canvas.Left="312" Canvas.Top="10" Height="84" Width="451" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
+                <Rectangle Height="11" Canvas.Top="94" Width="998" Fill="#FF0078D7"/>
+                <Label Content="RUT:" Canvas.Left="420" Canvas.Top="159"/>
+                <TextBox x:Name="IgRut1" Canvas.Left="474" Canvas.Top="161" TextWrapping="Wrap" Width="210" Height="22"/>
+                <Label Content="Nombre:" Canvas.Left="398" Canvas.Top="194"/>
+                <TextBox x:Name="IgNombre1" Canvas.Left="472" Canvas.Top="196" TextWrapping="Wrap" Width="212" Height="22"/>
+                <Label Content="Apellido Paterno:" Canvas.Left="354" Canvas.Top="229"/>
+                <TextBox x:Name="IgAP1" Canvas.Left="474" Canvas.Top="231" TextWrapping="Wrap" Width="210" Height="22"/>
+                <Label Content="Apellido Materno:" Canvas.Left="350" Canvas.Top="264"/>
+                <TextBox x:Name="IgAM1" Canvas.Left="474" Canvas.Top="268" TextWrapping="Wrap" Width="210" Height="22"/>
+                <Label Content="Numero de telefono:" Canvas.Left="336" Canvas.Top="296"/>
+                <TextBox x:Name="IgTelefono1" Canvas.Left="474" Canvas.Top="303" TextWrapping="Wrap" Width="210" Height="22"/>
+                <Label Content="Correo Electronico:" Canvas.Left="344" Canvas.Top="332"/>
+                <TextBox x:Name="IgCorreo1" Canvas.Left="474" Canvas.Top="339" TextWrapping="Wrap" Width="210" Height="22"/>
+                <Button x:Name="RegistrarPaciente1" Style="{DynamicResource BorderRoundedCorner}" Content="Registrar Especialista" Canvas.Left="429" Canvas.Top="399" Width="208" Height="43" Background="#FF0078D7" BorderBrush="{x:Null}" Foreground="White" FontSize="16" Click="RegistrarPaciente_Click"/>
+            </Canvas>
+        </Canvas>
     </Grid>
 </Window>

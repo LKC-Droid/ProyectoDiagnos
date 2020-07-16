@@ -73,7 +73,7 @@ namespace ProyectoDiagnos.Modelos.DTO
         public override string ToString()
         {
             var NombreCompleto = this.Nombre + " " + this.ApellidoP + " " + this.ApellidoM;
-            return this.NombreCompleto+ this.Rut;
+            return this.NombreCompleto+" "+this.Rut;
         }
 
     }

@@ -47,6 +47,11 @@ namespace Diagnos.Modelos.DTO
             this.NombreCompleto = nombre + " " + apellido;
         }
 
+        public override string ToString()
+        {
+           
+            return this.NombreCompleto + " " + this.Rut;
+        }
 
         public string Rut { get => rut; set => rut = value; }
         public string Nombre { get => nombre; set => nombre = value; }

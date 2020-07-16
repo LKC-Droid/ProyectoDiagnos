@@ -37,8 +37,8 @@ namespace Diagnos.Vistas
             LiveTime.Start();
             listas();
             TipoDeUsuario(usuario, tipo);
-            
-
+            CargarCombobox();
+            cargarEsp();
         }
 
         /// <summary>
@@ -73,6 +73,8 @@ namespace Diagnos.Vistas
 
         private void cargarCitas2()
         {
+            ListadeCitas.ItemsSource = null;
+            citasAgendadas.Clear();
             Conectar cn = new Conectar();
             MySqlDataReader rd2 = cn.ConectarDB("select * from citamedica");
 
@@ -133,6 +135,8 @@ namespace Diagnos.Vistas
 
         public void cargarCitas(string rut_esp)
         {
+            ListadeCitas.ItemsSource = null;
+            citasAgendadas.Clear();
             Conectar cn = new Conectar();
             MySqlDataReader rd2 = cn.ConectarDB("select * from citamedica WHERE especialista_rut='"+rut_esp+"'");
 
@@ -165,6 +169,22 @@ namespace Diagnos.Vistas
 
             
             ListadeCitas.ItemsSource = citasAgendadas;
+        }
+
+        private void CargarCombobox()
+        {
+            for (int i = 7; i < 23; i++)
+            {
+                ComboHora.Items.Add(i);
+            }
+
+            for (int i = 0; i < 12; i++)
+            {
+                ComboMin.Items.Add(i*5);
+            }
+
+            ComboHora.SelectedIndex = 0;
+            ComboMin.SelectedIndex = 0;
         }
 
         void timer_Tick(object sender, EventArgs e)
@@ -228,6 +248,7 @@ namespace Diagnos.Vistas
             menu2.IsExpanded = false;
             menu1.IsExpanded = false;
             menu.IsExpanded = false;
+            
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
@@ -338,7 +359,7 @@ namespace Diagnos.Vistas
             Agenda.Visibility = Visibility.Visible;
             Registro_de_cita.Visibility = Visibility.Visible;
             Citas.Visibility = Visibility.Hidden;
-            cargarEsp();
+            
         }
 
 
@@ -419,6 +440,49 @@ namespace Diagnos.Vistas
                 ListadePacientes.ItemsSource = null;
                 ListadePacientes.ItemsSource = listaPacientes;
             }
+        }
+        
+
+
+        private void RegistrarCita_Click(object sender, RoutedEventArgs e)
+        {
+            string userpac = PacienteEscogido.Content.ToString();
+            string rutpac = System.Text.RegularExpressions.Regex.Replace(userpac, "[^0-9-.]", "");
+
+            string useresp = EspecialistaEscogido.Content.ToString();
+            string rutesp = System.Text.RegularExpressions.Regex.Replace(useresp, "[^0-9-.]", "");
+
+            string fecha = FechaCita.SelectedDate.Value.ToString("yyyy-MM-dd") + " " + ComboHora.SelectedItem.ToString() + ":" + ComboMin.SelectedItem.ToString() + ":" + "00";
+
+            Conectar cn = new Conectar();
+            try
+            {
+            MySqlDataReader rd = cn.ConectarDB("INSERT INTO `citamedica`(`fechacita`, `paciente_rut`, `administrativo_rut`, `especialista_rut`) VALUES ('"+fecha+"','"+rutpac+"','123-4','"+rutesp+"')");
+                MessageBox.Show("Se ha agregado la cita correctamente","Exito!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+            
+        }
+
+        private void SeleccionarPacienteCita(object sender, RoutedEventArgs e)
+        {
+            string user = SelPaciente.SelectedItem.ToString();
+            string rutpac = System.Text.RegularExpressions.Regex.Replace(user, "[^0-9-.]", "");
+            PacienteEscogido.Content = "Se ha seleccionado: "+user;
+            
+
+        }
+
+        private void SeleccionarEspCita(object sender, RoutedEventArgs e)
+        {
+            string user = SelPaciente_Copy.SelectedItem.ToString();
+            string rutesp = System.Text.RegularExpressions.Regex.Replace(user, "[^0-9-.]", "");
+            EspecialistaEscogido.Content = "Se ha seleccionado: " + user;
+            
         }
     }
 }
