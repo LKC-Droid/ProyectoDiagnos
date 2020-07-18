@@ -484,5 +484,65 @@ namespace Diagnos.Vistas
             EspecialistaEscogido.Content = "Se ha seleccionado: " + user;
             
         }
+
+        private void EditarPaciente(object sender, RoutedEventArgs e)
+        {
+            AñadirPaciente.Visibility = Visibility.Hidden;
+            EditarPacienteCanvas.Visibility = Visibility.Visible;
+            Agenda.Visibility = Visibility.Hidden;
+            Pacientes.Visibility = Visibility.Visible;
+            ListaDePacientes.Visibility = Visibility.Hidden;
+
+            string user = ListadePacientes.SelectedItem.ToString();
+            string rut = System.Text.RegularExpressions.Regex.Replace(user, "[^0-9-.]", "");
+
+            Conectar cn = new Conectar();
+            try
+            {
+                MySqlDataReader rd = cn.ConectarDB("SELECT * FROM `paciente` WHERE rut='" + rut + "'");
+                    listas();
+
+                while (rd.Read())
+                {
+                    EdRut.Text = rd.GetString(0);
+                    EdNombre.Text = rd.GetString(1);
+                    EdAP.Text = rd.GetString(2);
+                    EdAM.Text = rd.GetString(3);
+                    EdFechaNac.Text = rd.GetString(4);
+                    EdTelefono.Text = rd.GetString(5);
+                    //EdCorreo.Text = rd.GetString(5);
+                    //EdEnfermedad.Text = rd.GetString(7);
+                }
+                    
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                throw;
+            }
+        }
+
+        private void EditarPacienteConfirma_Click(object sender, RoutedEventArgs e)
+        {
+
+            string fecha = EdFechaNac.SelectedDate.Value.ToString("yyyy-MM-dd");
+
+            Conectar cn = new Conectar();
+            try
+            {
+                cn.ConectarDB("UPDATE `paciente` SET `nombre`='" + EdNombre.Text + "',`apellidopaterno`='" + EdAP.Text + "',`apellidomaterno`='" + EdAM.Text + "',`fechanac`='" + fecha + "',`telefono`='" + EdTelefono.Text + "' WHERE rut ='" + EdRut.Text + "'");
+                MessageBox.Show("Se ha modificado correctamente","Exito!");
+                ListaDePacientes.Visibility = Visibility.Visible;
+                EditarPacienteCanvas.Visibility = Visibility.Hidden;
+                listas();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+        }
     }
 }

@@ -679,7 +679,7 @@
                 <Label x:Name="PacienteEscogido" Content="Seleccione un paciente y haga click en &quot;Seleccionar&quot;" Canvas.Left="213" Canvas.Top="247" FontWeight="Bold" Foreground="#FF0078D7" FontSize="14" Width="397" Height="29" HorizontalContentAlignment="Center"/>
             </Canvas>
         </Canvas>
-        <Canvas x:Name="Pacientes" Margin="10,114,10,5" Background="White" AutomationProperties.Name="Agenda" d:IsHidden="True">
+        <Canvas x:Name="Pacientes" Margin="10,114,10,5" Background="White" AutomationProperties.Name="Agenda">
             <Canvas x:Name="AñadirPaciente" Background="White" AutomationProperties.Name="Agenda" Height="652" Width="998" Visibility="Visible">
                 <Label Content="Nuevo paciente" Canvas.Left="320" Canvas.Top="10" Height="84" Width="364" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
                 <Rectangle Height="11" Canvas.Top="94" Width="998" Fill="#FF0078D7"/>
@@ -706,7 +706,7 @@
                 <Rectangle Height="11" Canvas.Top="94" Width="1004" Fill="#FF0078D7"/>
                 <TextBox x:Name="BuscarPaciente" Canvas.Left="188" Canvas.Top="594" TextWrapping="Wrap" Width="308" Height="27" BorderBrush="#FF0078D7" KeyUp="TextBox_KeyUp"/>
                 <Label Content="Buscar Paciente" Canvas.Left="26" Canvas.Top="589" FontWeight="Bold" Foreground="#FF0078D7" FontSize="20"/>
-                <Button Content="Editar" Canvas.Left="824" Canvas.Top="589" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="18" RenderTransformOrigin="0.062,0.514" Width="62"/>
+                <Button Content="Editar" Canvas.Left="824" Canvas.Top="589" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="18" RenderTransformOrigin="0.062,0.514" Width="62" Click="EditarPaciente"/>
                 <Button x:Name="EliminarPaciente" Content="Eliminar" Canvas.Left="900" Canvas.Top="589" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="18" Click="EliminarPaciente_Click"/>
                 <ListBox x:Name="ListadePacientes" Width="950" Height="444" Background="#FFEEEEEE" Canvas.Left="23" Canvas.Top="140" Style="{DynamicResource ClinicaList}" SelectedItem="{DynamicResource Button.Pressed.Background3}" SelectionChanged="ListadePacientes_SelectionChanged">
                     <ListBox.ItemTemplate>
@@ -730,55 +730,30 @@
 
 
             </Canvas>
+            <Canvas x:Name="EditarPacienteCanvas" Background="White" AutomationProperties.Name="Agenda" Height="652" Width="998" Visibility="Hidden">
+                <Label Content="Editar paciente" Canvas.Left="334" Canvas.Top="10" Height="84" Width="364" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
+                <Rectangle Height="11" Canvas.Top="94" Width="998" Fill="#FF0078D7"/>
+                <Label Content="RUT:" Canvas.Left="420" Canvas.Top="159"/>
+                <TextBox x:Name="EdRut" Canvas.Left="474" Canvas.Top="161" TextWrapping="Wrap" Width="210" Height="22" IsEnabled="False"/>
+                <Label Content="Nombre:" Canvas.Left="398" Canvas.Top="194"/>
+                <TextBox x:Name="EdNombre" Canvas.Left="472" Canvas.Top="196" TextWrapping="Wrap" Width="212" Height="22"/>
+                <Label Content="Apellido Paterno:" Canvas.Left="354" Canvas.Top="229"/>
+                <TextBox x:Name="EdAP" Canvas.Left="474" Canvas.Top="231" TextWrapping="Wrap" Width="210" Height="22"/>
+                <Label Content="Apellido Materno:" Canvas.Left="350" Canvas.Top="264"/>
+                <TextBox x:Name="EdAM" Canvas.Left="474" Canvas.Top="268" TextWrapping="Wrap" Width="210" Height="22"/>
+                <Label Content="Numero de telefono:" Canvas.Left="336" Canvas.Top="296"/>
+                <TextBox x:Name="EdTelefono" Canvas.Left="474" Canvas.Top="303" TextWrapping="Wrap" Width="210" Height="22"/>
+                <Label Content="Fecha de nacimiento:" Canvas.Left="334" Canvas.Top="372"/>
+                <Label Content="Enfermedad Cronica:" Canvas.Left="334" Canvas.Top="425"/>
+                <Label Content="Correo Electronico:" Canvas.Left="344" Canvas.Top="332"/>
+                <TextBox x:Name="EdCorreo" Canvas.Left="474" Canvas.Top="339" TextWrapping="Wrap" Width="210" Height="22"/>
+                <DatePicker x:Name="EdFechaNac" Canvas.Left="472" Canvas.Top="379" Width="212" DisplayDate="2020-06-17" SelectedDateFormat="Short"/>
+                <TextBox x:Name="EdEnfermedad" Canvas.Left="472" Canvas.Top="425" TextWrapping="Wrap" Width="212" Height="96"/>
+                <Button x:Name="EditarPaciente1" Style="{DynamicResource BorderRoundedCorner}" Content="Confirmar" Canvas.Left="434" Canvas.Top="570" Width="144" Height="43" Background="#FF0078D7" BorderBrush="{x:Null}" Foreground="White" FontSize="16" Click="EditarPacienteConfirma_Click"/>
+            </Canvas>
         </Canvas>
-        <Expander x:Name="menu1" Header="Pacientes" FontSize="18" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="264,68,507,575" AutomationProperties.Name="menu" FontWeight="Bold" d:IsLocked="True">
-            <Grid Background="#FF0078D7" Height="101" VerticalAlignment="Top">
-                <Button Content="Agregar nuevo paciente" Click="Button_Click_3" FontWeight="Bold" BorderBrush="#FF6FB5FB" Background="White" VerticalAlignment="Top" Height="35" Margin="0,10,0,0" Foreground="#FF0078D7"/>
-                <Button Content="Ver Pacientes" VerticalAlignment="Top" Height="35" Background="White" BorderBrush="#FF6FB5FB" Foreground="#FF0078D7" FontWeight="Bold" Click="Button_Click_4" Margin="0,51,0,0"/>
-            </Grid>
-        </Expander>
-        <Expander x:Name="menu2" Header="Administración" FontSize="18" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="517,68,254,557" AutomationProperties.Name="menu" FontWeight="Bold" d:IsLocked="True">
-            <Grid Background="#FF0078D7"/>
-        </Expander>
-        <Expander x:Name="menu3" Header="Reportes" FontSize="18" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="772,68,-1,557" FontWeight="Bold" d:IsLocked="True">
-            <Grid Background="#FF0078D7">
-                <Button Content="test" HorizontalAlignment="Left" Margin="86,22,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_6"/>
-            </Grid>
-        </Expander>
-        <Button Style="{DynamicResource HomeButton}" HorizontalAlignment="Left" Margin="-181,32,0,0" VerticalAlignment="Top" Height="63" Width="66" Click="Button_Click_5" BorderBrush="{x:Null}" Visibility="Hidden">
-            <Button.Background>
-                <ImageBrush ImageSource="/Resources/images/Home.png"/>
-            </Button.Background>
-        </Button>
-        <Expander x:Name="menu" Header="Agenda" FontSize="18" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="11,68,760,575" AutomationProperties.Name="menu" FontWeight="Bold" d:IsLocked="True">
-            <Grid Background="#FF0078D7" Height="101" VerticalAlignment="Top">
-                <Button Style="{DynamicResource ButtonStyle1}" Content="Ver citas de hoy" Click="Button_Click_1" FontWeight="Bold" BorderBrush="#FF6FB5FB" Background="White" VerticalAlignment="Top" Height="35" Margin="0,10,0,0" Foreground="#FF0078D7"/>
-                <Button Content="Ver todas las citas" VerticalAlignment="Top" Height="35" Background="White" BorderBrush="#FF6FB5FB" Foreground="#FF0078D7" FontWeight="Bold" Margin="0,51,0,0"/>
-            </Grid>
-        </Expander>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="1108,483,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="Salir" Content="" Margin="958,15,0,714" Click="Salir_Click" BorderBrush="{x:Null}" Style="{DynamicResource Logout}" HorizontalAlignment="Left" Width="30">
-            <Button.Effect>
-                <DropShadowEffect Opacity="0.5" Direction="317"/>
-            </Button.Effect>
-            <Button.Background>
-                <ImageBrush ImageSource="/ProyectoDiagnos;component/Resources/images/logout.png" Stretch="Uniform" >
-                    <ImageBrush.RelativeTransform>
-                        <TransformGroup>
-                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.9" ScaleY="1.05"/>
-                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
-                            <RotateTransform CenterY="0.5" CenterX="0.5"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </ImageBrush.RelativeTransform>
-                </ImageBrush>
-
-            </Button.Background>
-        </Button>
-        <Rectangle HorizontalAlignment="Left" Height="53" Margin="992,10,0,0" VerticalAlignment="Top" Width="3" Fill="White"/>
-        <Rectangle HorizontalAlignment="Left" Height="53" Margin="945,10,0,0" VerticalAlignment="Top" Width="3" Fill="White"/>
-        <Canvas x:Name="Administracion" Margin="10,114,22,5" Background="White" AutomationProperties.Name="Agenda">
-            <Canvas x:Name="Inventario" Background="White" AutomationProperties.Name="Agenda" Height="652" Width="998" Visibility="Visible" d:IsHidden="True">
+        <Canvas x:Name="Administracion" Margin="10,114,22,5" Background="White" AutomationProperties.Name="Agenda" Visibility="Hidden">
+            <Canvas x:Name="Inventario" Background="White" AutomationProperties.Name="Agenda" Height="652" Width="998" Visibility="Visible">
                 <Label Content="Inventario" Canvas.Left="358" Canvas.Top="10" Height="84" Width="256" Background="Transparent" Foreground="#FF0078D7" FontSize="48" FontWeight="Bold"/>
                 <Button x:Name="BotonNuevaCita1" Content="Nuevo insumo" Background="{x:Null}" BorderBrush="#00707070" Foreground="#FF0078D7" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.062,0.514" Height="40" Canvas.Left="618" Canvas.Top="581" Width="147" Click="BotonNuevaCita_Click_1" Cursor="Hand"/>
                 <Rectangle Height="11" Canvas.Top="94" Width="994" Fill="#FF0078D7"/>
@@ -833,5 +808,51 @@
                 <Button x:Name="RegistrarPaciente1" Style="{DynamicResource BorderRoundedCorner}" Content="Registrar Especialista" Canvas.Left="429" Canvas.Top="399" Width="208" Height="43" Background="#FF0078D7" BorderBrush="{x:Null}" Foreground="White" FontSize="16" Click="RegistrarPaciente_Click"/>
             </Canvas>
         </Canvas>
+        <Expander x:Name="menu1" Header="Pacientes" FontSize="18" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="264,68,507,575" AutomationProperties.Name="menu" FontWeight="Bold">
+            <Grid Background="#FF0078D7" Height="101" VerticalAlignment="Top">
+                <Button Content="Agregar nuevo paciente" Click="Button_Click_3" FontWeight="Bold" BorderBrush="#FF6FB5FB" Background="White" VerticalAlignment="Top" Height="35" Margin="0,10,0,0" Foreground="#FF0078D7"/>
+                <Button Content="Ver Pacientes" VerticalAlignment="Top" Height="35" Background="White" BorderBrush="#FF6FB5FB" Foreground="#FF0078D7" FontWeight="Bold" Click="Button_Click_4" Margin="0,51,0,0"/>
+            </Grid>
+        </Expander>
+        <Expander x:Name="menu2" Header="Administración" FontSize="18" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="517,68,254,557" AutomationProperties.Name="menu" FontWeight="Bold" d:IsLocked="True">
+            <Grid Background="#FF0078D7"/>
+        </Expander>
+        <Expander x:Name="menu3" Header="Reportes" FontSize="18" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="772,68,-1,557" FontWeight="Bold" d:IsLocked="True">
+            <Grid Background="#FF0078D7">
+                <Button Content="test" HorizontalAlignment="Left" Margin="86,22,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_6"/>
+            </Grid>
+        </Expander>
+        <Button Style="{DynamicResource HomeButton}" HorizontalAlignment="Left" Margin="-181,32,0,0" VerticalAlignment="Top" Height="63" Width="66" Click="Button_Click_5" BorderBrush="{x:Null}" Visibility="Hidden">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/images/Home.png"/>
+            </Button.Background>
+        </Button>
+        <Expander x:Name="menu" Header="Agenda" FontSize="18" Foreground="#FF0078D7" BorderBrush="{x:Null}" Margin="11,68,760,575" AutomationProperties.Name="menu" FontWeight="Bold" d:IsLocked="True">
+            <Grid Background="#FF0078D7" Height="101" VerticalAlignment="Top">
+                <Button Style="{DynamicResource ButtonStyle1}" Content="Ver citas de hoy" Click="Button_Click_1" FontWeight="Bold" BorderBrush="#FF6FB5FB" Background="White" VerticalAlignment="Top" Height="35" Margin="0,10,0,0" Foreground="#FF0078D7"/>
+                <Button Content="Ver todas las citas" VerticalAlignment="Top" Height="35" Background="White" BorderBrush="#FF6FB5FB" Foreground="#FF0078D7" FontWeight="Bold" Margin="0,51,0,0"/>
+            </Grid>
+        </Expander>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="1108,483,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="Salir" Content="" Margin="958,15,0,714" Click="Salir_Click" BorderBrush="{x:Null}" Style="{DynamicResource Logout}" HorizontalAlignment="Left" Width="30">
+            <Button.Effect>
+                <DropShadowEffect Opacity="0.5" Direction="317"/>
+            </Button.Effect>
+            <Button.Background>
+                <ImageBrush ImageSource="/ProyectoDiagnos;component/Resources/images/logout.png" Stretch="Uniform" >
+                    <ImageBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.9" ScaleY="1.05"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ImageBrush.RelativeTransform>
+                </ImageBrush>
+
+            </Button.Background>
+        </Button>
+        <Rectangle HorizontalAlignment="Left" Height="53" Margin="992,10,0,0" VerticalAlignment="Top" Width="3" Fill="White"/>
+        <Rectangle HorizontalAlignment="Left" Height="53" Margin="945,10,0,0" VerticalAlignment="Top" Width="3" Fill="White"/>
     </Grid>
 </Window>
